@@ -79,7 +79,6 @@ public class Member {
     }
 
 
-
     public int getNumberOfBoats() {
         return boatArray.size();
     }

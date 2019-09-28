@@ -1,12 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BoatClub {
     /*
      * this class contains all the members
      */
     private ArrayList<Member> membersArray = new ArrayList<>();
+    private Scanner scan = new Scanner(System.in);
 
     public BoatClub() {
 
@@ -27,8 +29,16 @@ public class BoatClub {
         } catch (IndexOutOfBoundsException ex) {
             throw new RuntimeException("Not Found!");
         }
+    }
 
+    public void changeMemberInfo(int position) throws Exception {
+        Member change = membersArray.get(position);
 
+        String changeName = "Jameson";
+        String changePersonalNumber = "199008054623";
+
+        change.setName(changeName);
+        change.setPersonalNumber(changePersonalNumber);
     }
 
     public String compactListString() {

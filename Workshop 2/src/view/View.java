@@ -38,9 +38,13 @@ public class View {
         System.out.println(boatClub.verboseListString());
 		System.out.println(boatClub.compactListString());
 
-		boatClub.removeMember(10);
+		// boatClub.removeMember(0);
         sc.close();
 
+		boatClub.changeMemberInfo(0);
+		System.out.println();
+		System.out.println(boatClub.verboseListString());
+		System.out.println(boatClub.compactListString());
 
 //        boolean running = true;
 //        System.out.println("Welcome to the Boat management system!");
