@@ -27,13 +27,18 @@ public class View {
         Member member = new Member(name, personalNumber);
 
         member.addBoat(Boat.BoatType.KAYAK_CANOE, 5, personalNumber);
-        member.addBoat(Boat.BoatType.KAYAK_CANOE, 5, personalNumber);
-
+        member.addBoat(Boat.BoatType.MOTORSAILER, 255, personalNumber+10);
+	//	member.removeBoat(0);
         System.out.println("\nNew member has been added!");
         boatClub.addMember(member);
+
+
+
         System.out.println("========================================");
         System.out.println(boatClub.verboseListString());
+		System.out.println(boatClub.compactListString());
 
+		boatClub.removeMember(10);
         sc.close();
 
 
