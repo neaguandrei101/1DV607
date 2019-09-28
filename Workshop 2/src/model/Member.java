@@ -63,11 +63,11 @@ public class Member {
 	    public int getMemberId() {
 	    	return this.memberId;
 	    }
-	    
-	    public void addBoat(BoatType type, int length, String personalNumber ) {
-	    	Boat boat = new Boat(type, length, personalNumber, boatArray.size());
-	    	this.boatArray.add(boat);
-	    }
+
+	public void addBoat(BoatType type, int length, String personalNumber) {
+		Boat boat = new Boat(type, length, personalNumber, boatArray.size());
+		this.boatArray.add(boat);
+	}
 	    
 	    public int getNumberOfBoats() {
 	    	return boatArray.size();
