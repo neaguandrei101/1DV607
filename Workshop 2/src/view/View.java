@@ -48,9 +48,17 @@ public class View {
 		System.out.println(boatClub.getMemberInfo(0));
 
 
+<<<<<<< HEAD
 		//boatClub.removeMember(0);
+=======
+		// boatClub.removeMember(0);
+>>>>>>> master
         sc.close();
 
+		boatClub.changeMemberInfo(0);
+		System.out.println();
+		System.out.println(boatClub.verboseListString());
+		System.out.println(boatClub.compactListString());
 
 //        boolean running = true;
 //        System.out.println("Welcome to the Boat management system!");
