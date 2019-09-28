@@ -31,14 +31,24 @@ public class View {
 	//	member.removeBoat(0);
         System.out.println("\nNew member has been added!");
         boatClub.addMember(member);
+        Member member2 = new Member("another member","199809221000" );
+
+        boatClub.addMember(member);
+        boatClub.addMember(member2);
+
+
 
 
 
         System.out.println("========================================");
         System.out.println(boatClub.verboseListString());
+        System.out.println("========================================");
 		System.out.println(boatClub.compactListString());
+        System.out.println("========================================");
+		System.out.println(boatClub.getMemberInfo(0));
 
-		boatClub.removeMember(10);
+
+		//boatClub.removeMember(0);
         sc.close();
 
 

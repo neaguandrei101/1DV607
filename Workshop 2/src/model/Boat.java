@@ -1,7 +1,7 @@
 package model;
 
 public class Boat {
-	 private String personalNumber;
+	 private String personalNumber;  // TODO unsure this is needed leave here for now
 	    private int boatID;
 	    private int length;
 	    private BoatType type;

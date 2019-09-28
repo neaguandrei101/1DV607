@@ -27,8 +27,18 @@ public class BoatClub {
         } catch (IndexOutOfBoundsException ex) {
             throw new RuntimeException("Not Found!");
         }
-
-
+    }
+    
+    public String getMemberInfo(int position) {
+        StringBuilder stringBuilder = new StringBuilder();
+        Member member = membersArray.get(position);
+        stringBuilder.append("Name: ");
+        stringBuilder.append(member.getName() + " ,");
+        stringBuilder.append("id: ");
+        stringBuilder.append(member.getMemberId() + " ,");
+        stringBuilder.append("boats: ");
+        stringBuilder.append(member.getNumberOfBoats() + "\n");
+        return stringBuilder.toString();
     }
 
     public String compactListString() {
