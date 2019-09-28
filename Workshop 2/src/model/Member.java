@@ -20,12 +20,13 @@ public class Member {
         this.name = name;
         this.personalNumber = personalNumber;
         this.memberId = personalNumber.hashCode();
-       // this.boatArray.add(new Boat());
-    }
-
-    public Member() {
       //  this.boatArray.add(new Boat());
     }
+
+    // MAYBE REMOVE
+//    public Member() {
+//       Boat newBoat = new Boat();
+//    }
 
     public String getName() {
         return name;
@@ -65,23 +66,27 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public void addBoat(BoatType type, int length, String personalNumber) {
-        Boat boat = new Boat(type, length, personalNumber, boatArray.size());
+    public void addBoat(BoatType type, int length) {
+        Boat boat = new Boat(type, length, boatArray.size());
         this.boatArray.add(boat);
     }
 
     public void removeBoat(int id) {
         try{
-        boatArray.remove(id);}
+            boatArray.remove(id);}
         catch (IndexOutOfBoundsException ex){
             throw new RuntimeException("Not Found!");
         }
     }
 
-
     public int getNumberOfBoats() {
         return boatArray.size();
     }
+
+    public void changeBoatInfo(int position, int length, BoatType boatType) throws Exception {
+        boatArray.get(position).setBoatInfo(length, boatType);
+    }
+
   // 199009035656
     //TODO add more here when the program becomes more complex
     public String printBoatArray() {
@@ -92,9 +97,10 @@ public class Member {
         return sb.toString();
     }
 
+
+
     @Override
     public String toString() {
-
         return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: "+getNumberOfBoats();
     }
 

@@ -1,44 +1,50 @@
 package model;
 
 public class Boat {
-	 private String personalNumber;  // TODO unsure this is needed leave here for now
-	    private int boatID;
-	    private int length;
-	    private BoatType type;
 
-	    public enum BoatType {
-	        SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER;
-	    }
+    private int boatCounter = 0;
+    private int length;
+    private BoatType type;
 
-	    Boat () {
-	    }
+    Boat() {
+    }
 
-	    Boat(BoatType type, int length, String personalNumber, int boatId ) {
-	        this.personalNumber = personalNumber;
-	        this.length = length; //length in centimeters
-	        this.type = type;
-	        this.boatID = boatId;
-	    }
-	    
-	    public int getLength(){
-	    	return length ;
-	    }
-	    
-	    public BoatType getType(){
-	    	return type ;
-	    }
+    Boat(BoatType type, int length, int boatId) {
+        this.length = length; //length in centimeters
+        this.type = type;
+        this.boatCounter = boatId;
+    }
 
-	    void setLength (int length){
-	    	this.length = length ;
-	    }
-	    
-	    void setType (BoatType type){
-	    	this.type = type;
-	    }
+    public int getLength() {
+        return length;
+    }
 
-	    @Override
-	    public String toString() {
-	        return "Type: "+ " " + this.type + " , " +"length: " +this.length + " , " + "id: "+ this.boatID + "\n";
-	    }
+    void setLength(int length) {
+        this.length = length;
+    }
+
+    public BoatType getType() {
+        return type;
+    }
+
+    void setType(BoatType type) {
+        this.type = type;
+    }
+
+    public void setBoatInfo(int changeLength, BoatType changeBoatType) throws Exception {
+    	if(getType()== null)
+    		throw new RuntimeException("There is no Boat!");
+        setLength(changeLength);
+        setType(changeBoatType);
+    }
+
+    @Override
+    public String toString() {
+        return "Type: " + " " + this.type + " , " + "length: " + this.length + " , " + "id: " + this.boatCounter + "\n";
+    }
+
+    public enum BoatType {
+        SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER;
+    }
 
 }

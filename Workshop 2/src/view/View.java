@@ -25,19 +25,35 @@ public class View {
         System.out.print("Personal Number: ");
         String personalNumber = sc.nextLine();
         Member member = new Member(name, personalNumber);
-
-        member.addBoat(Boat.BoatType.KAYAK_CANOE, 5, personalNumber);
-        member.addBoat(Boat.BoatType.MOTORSAILER, 255, personalNumber + 10);
-        //	member.removeBoat(0);
-        System.out.println("\nNew member has been added!");
-        boatClub.addMember(member);
         Member member2 = new Member("another member", "199809221000");
+        System.out.println("\nNew member has been added!");
+
+
+        member.addBoat(Boat.BoatType.KAYAK_CANOE, 5);
+        member.addBoat(Boat.BoatType.MOTORSAILER, 255);
 
         boatClub.addMember(member);
         boatClub.addMember(member2);
 
-
+        System.out.println("=========== PRE CHANGE eListString ==============");
         System.out.println(boatClub.verboseListString());
+        System.out.println("=========== VerboseListString ==============");
+
+        //	member.removeBoat(0);
+
+        boatClub.addMember(member);
+
+
+
+        System.out.println("================ CHANGE BOAT INFO ===============");
+
+        member.changeBoatInfo(0,20, Boat.BoatType.SAILBOAT);
+        System.out.println(boatClub.verboseListString());
+        System.out.println("===================================\n\n");
+
+        System.out.println("=========== VerboseListString ==============");
+        System.out.println(boatClub.verboseListString());
+        System.out.println("=========== VerboseListString ==============");
 
         System.out.println(boatClub.compactListString());
 

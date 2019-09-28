@@ -14,11 +14,6 @@ public class BoatClub {
 
     }
 
-    public void addMember() {
-        this.membersArray.add(new Member());
-    }
-
-
     public void addMember(Member member) {
         this.membersArray.add(member);
     }
@@ -40,6 +35,7 @@ public class BoatClub {
         change.setName(var_changeName);
         change.setPersonalNumber(var_changePersonalNumber);
     }
+
 
     public String getMemberInfo(int position) {
 
