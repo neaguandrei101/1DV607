@@ -94,7 +94,8 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId();
+
+        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: "+getNumberOfBoats();
     }
 
 

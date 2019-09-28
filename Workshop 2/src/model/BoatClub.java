@@ -29,20 +29,22 @@ public class BoatClub {
         } catch (IndexOutOfBoundsException ex) {
             throw new RuntimeException("Not Found!");
         }
-
-
     }
-    
+
+    public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
+        Member change = membersArray.get(position);
+
+        String var_changeName = changeName;
+        String var_changePersonalNumber = changePersonalNumber;
+
+        change.setName(var_changeName);
+        change.setPersonalNumber(var_changePersonalNumber);
+    }
+
     public String getMemberInfo(int position) {
-        StringBuilder stringBuilder = new StringBuilder();
+
         Member member = membersArray.get(position);
-        stringBuilder.append("Name: ");
-        stringBuilder.append(member.getName() + " ,");
-        stringBuilder.append("id: ");
-        stringBuilder.append(member.getMemberId() + " ,");
-        stringBuilder.append("boats: ");
-        stringBuilder.append(member.getNumberOfBoats() + "\n");
-        return stringBuilder.toString();
+        return member.toString();
     }
 
     public String compactListString() {
