@@ -1,10 +1,11 @@
 package view;
 
-
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.util.Scanner;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Boat;
 import model.Member;
@@ -25,8 +26,8 @@ public class View {
         Member member2 = new Member("another member", "199809221000");
 
 
-        member.addBoat(Boat.BoatType.KAYAK_CANOE, 5);
-        member.addBoat(Boat.BoatType.MOTORSAILER, 255);
+        member.addBoat("KAYAK_CANOE", 5);
+        member.addBoat("MOTORSAILER", 255);
 
         boatClub.addMember(member);
         boatClub.addMember(member2);
@@ -37,12 +38,12 @@ public class View {
 
        
         boatClub.addMember(member);
-
+        member.removeBoat(1);
 
 
         System.out.println("================ CHANGE BOAT INFO ===============");
 
-        member.changeBoatInfo(0,20, Boat.BoatType.SAILBOAT);
+        member.changeBoatInfo(0,20, "SAILBOAT");
         System.out.println(boatClub.verboseListString());
         System.out.println("===================================\n\n");
 
@@ -64,8 +65,9 @@ public class View {
         System.out.println(boatClub.compactListString());
         
         Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
-        
-        
+        ObjectMapper objectMapper = new ObjectMapper();        
+        BoatClub readFromFile = objectMapper.readValue(new File("ExampleMember.json"), BoatClub.class);
+        System.out.print("readFromFIle: \n"+readFromFile.verboseListString());
         
         
 

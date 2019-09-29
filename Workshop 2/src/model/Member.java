@@ -1,14 +1,18 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import model.Boat.BoatType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Member {
     private String name;
     private String personalNumber;
     private int memberId;
-    protected ArrayList<Boat> boatArray = new ArrayList<>();
+    
+	@JsonProperty("boatArray")
+    protected List<Boat> boatArray = new ArrayList<>();
 
     /* TODO added empty new Boat() in the constructors
      * because when you create a new Member()
@@ -23,10 +27,7 @@ public class Member {
       //  this.boatArray.add(new Boat());
     }
 
-    // MAYBE REMOVE
-//    public Member() {
-//       Boat newBoat = new Boat();
-//    }
+    public Member() {}
 
     public String getName() {
         return name;
@@ -66,7 +67,7 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public void addBoat(BoatType type, int length) {
+    public void addBoat(String type, int length) {
         Boat boat = new Boat(type, length, boatArray.size());
         this.boatArray.add(boat);
     }
@@ -83,7 +84,7 @@ public class Member {
         return boatArray.size();
     }
 
-    public void changeBoatInfo(int position, int length, BoatType boatType) throws Exception {
+    public void changeBoatInfo(int position, int length, String boatType) throws Exception {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 

@@ -1,12 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class BoatClub {
-	private ArrayList<Member> membersArray = new ArrayList<>();
+	@JsonProperty("membersArray")
+	private List<Member> membersArray = new ArrayList<>();
 
 	public BoatClub() {
 
@@ -66,7 +70,6 @@ public class BoatClub {
 		return stringBuilder.toString();
 	}
 
-	// TODO believed to work, needs more testing
 	public JSONObject getJsonFileMembers() throws Exception {
 		JSONArray jsonMemberArray = new JSONArray();
 		for (Member member : membersArray) {
