@@ -96,8 +96,6 @@ public class Member {
         return sb.toString();
     }
 
-
-
     @Override
     public String toString() {
         return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: "+getNumberOfBoats();

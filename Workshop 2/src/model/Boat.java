@@ -9,7 +9,7 @@ public class Boat {
 	private int length;
     private String type;
 
-    Boat() {
+    public Boat() {
     }
 
     Boat(String type, int length, int boatId) {
