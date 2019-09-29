@@ -62,6 +62,8 @@ public class BoatClub {
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
 			stringBuilder.append(member.getName() + " ,");
+			stringBuilder.append("Personal number: ");
+			stringBuilder.append(member.getPersonalNumber() + " ,");
 			stringBuilder.append("id: ");
 			stringBuilder.append(member.getMemberId() + "\n");
 			stringBuilder.append("boat list: \n");
