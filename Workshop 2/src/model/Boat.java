@@ -3,7 +3,7 @@ package model;
 public class Boat {
 
     private int boatCounter = 0;
-    private int length;
+	private int length;
     private BoatType type;
 
     Boat() {
@@ -30,6 +30,10 @@ public class Boat {
     void setType(BoatType type) {
         this.type = type;
     }
+    
+    public int getBoatCounter() {
+		return boatCounter;
+	}
 
     public void setBoatInfo(int changeLength, BoatType changeBoatType) throws Exception {
     	if(getType()== null)

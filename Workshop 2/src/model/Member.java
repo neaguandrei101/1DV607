@@ -8,7 +8,7 @@ public class Member {
     private String name;
     private String personalNumber;
     private int memberId;
-    private ArrayList<Boat> boatArray = new ArrayList<>();
+    protected ArrayList<Boat> boatArray = new ArrayList<>();
 
     /* TODO added empty new Boat() in the constructors
      * because when you create a new Member()
@@ -87,8 +87,6 @@ public class Member {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
-  // 199009035656
-    //TODO add more here when the program becomes more complex
     public String printBoatArray() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {

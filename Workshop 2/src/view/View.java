@@ -1,6 +1,8 @@
 package view;
 
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.util.Scanner;
 
@@ -16,17 +18,11 @@ public class View {
      */
 
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
         BoatClub boatClub = new BoatClub();
 
-        System.out.print("Name: ");
-        String name = sc.nextLine();
-
-        System.out.print("Personal Number: ");
-        String personalNumber = sc.nextLine();
-        Member member = new Member(name, personalNumber);
+        
+        Member member = new Member("andrei", "101010101010");
         Member member2 = new Member("another member", "199809221000");
-        System.out.println("\nNew member has been added!");
 
 
         member.addBoat(Boat.BoatType.KAYAK_CANOE, 5);
@@ -35,12 +31,11 @@ public class View {
         boatClub.addMember(member);
         boatClub.addMember(member2);
 
-        System.out.println("=========== PRE CHANGE eListString ==============");
+        System.out.println("=========== PRE CHANGE VerboseListString ==============");
         System.out.println(boatClub.verboseListString());
         System.out.println("=========== VerboseListString ==============");
 
-        //	member.removeBoat(0);
-
+       
         boatClub.addMember(member);
 
 
@@ -60,17 +55,19 @@ public class View {
         System.out.println(boatClub.getMemberInfo(0));
 
 
-        //boatClub.removeMember(0);
 
-        // boatClub.removeMember(0);
-
-        sc.close();
 
         boatClub.changeMemberInfo(0,"Jameson", "199808051234");
         System.out.println(boatClub.getMemberInfo(0));
         System.out.println();
         System.out.println(boatClub.verboseListString());
         System.out.println(boatClub.compactListString());
+        
+        Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
+        
+        
+        
+        
 
 //        boolean running = true;
 //        System.out.println("Welcome to the Boat management system!");
