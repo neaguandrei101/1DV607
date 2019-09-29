@@ -1,12 +1,16 @@
-import controller.MemberInfo;
+import view.View;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
 
 
-        MemberInfo memberInfo = new MemberInfo();
-        memberInfo.createUser();
+        View runSession = new View();
+        runSession.console();
+
+
+
+
 
 
     }

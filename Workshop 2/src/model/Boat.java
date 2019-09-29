@@ -1,21 +1,18 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Boat {
 
     private int boatCounter = 0;
 	private int length;
-    private String type;
+    private String boatType;
 
-    public Boat() {
-    }
-
-    Boat(String type, int length, int boatId) {
+    public Boat(String boatType, int length, int boatId) {
+        this.boatType = boatType;
         this.length = length; //length in centimeters
-        this.type = type;
         this.boatCounter = boatId;
+    }
+    public Boat(){
+
     }
 
     public int getLength() {
@@ -27,13 +24,13 @@ public class Boat {
     }
 
     public String getType() {
-        return type;
+        return boatType;
     }
 
-    void setType(String type) {
-        this.type = type;
+    public void setBoatType(String boatType) {
+        this.boatType = boatType;
     }
-    
+
     public int getBoatCounter() {
 		return boatCounter;
 	}
@@ -42,12 +39,12 @@ public class Boat {
     	if(getType()== null)
     		throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
-        setType(changeBoatType);
+        setBoatType(changeBoatType);
     }
 
     @Override
     public String toString() {
-        return "Type: " + " " + this.type + " , " + "length: " + this.length + " , " + "id: " + this.boatCounter + "\n";
+        return "Type: " + " " + this.boatType + " , " + "length: " + this.length + " , " + "id: " + this.boatCounter + "\n";
     }
     
 }

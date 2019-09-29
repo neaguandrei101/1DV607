@@ -6,19 +6,35 @@ import model.Member;
 
 import java.util.Scanner;
 
-public class MemberInfo {
+public class Act {
 
-    private Scanner sc = new Scanner(System.in);
-    public MemberInfo(){
+    private static Scanner sc = new Scanner(System.in);
+    public Act(){
 
     }
 
-    public int readChoice(int num) throws Exception {
+    public static int readChoice(int num) throws Exception {
         boolean on = true;
         while (on) {
             switch (num) {
                 case 1:
-                //    createUser();
+                    createUser();
+                    on = false;
+                    break;
+                case 2:
+                    ;
+                    on = false;
+                    break;
+                case 3:
+
+                    on = false;
+                    break;
+                case 4:
+
+
+                    break;
+                case 5:
+
                     on = false;
                     break;
                 case 6:
@@ -32,7 +48,7 @@ public class MemberInfo {
         return num;
     }
 
-    public void createUser() throws Exception {
+    public static void createUser() throws Exception {
         boolean created = false;
 
             Member create = new Member();
@@ -46,22 +62,7 @@ public class MemberInfo {
             System.out.print("Personal Number: ");
             create.setPersonalNumber(sc.nextLine());
 
-            System.out.println("Example = 'MOTORSAILER' , Length =  '250'");
-            System.out.println("(1) for 'SAILBOAT'");
-            System.out.println("(2) for 'MOTORSAILER'");
-            System.out.println("(3) for 'KAYAK_CANOE'");
-            System.out.println("(4) for 'KAYAK_CANOE'");
-            System.out.print("Your Choice -->");
-
-
-            Object type1 = sc.nextLine();
-            if (type1.equals("SAILBOAT")){
-                boat.setType(type1);
-            }
-
-
-
-            create.addBoat(boat.setType(sc.nextLine().));
+            System.out.println("Boat Type: ");
 
             boatClub.addMember(create);
 
