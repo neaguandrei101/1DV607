@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Member;
+import model.ReadJSON;
 import model.BoatClub;
 import controller.Act;
 
@@ -71,7 +72,7 @@ public class View {
 //        member.addBoat("MOTORSAILER", 255);
 //
 //        boatClub.addMember(member);
-//        boatClub.addMember(member2);
+//       boatClub.addMember(member2);
 //
 //        System.out.println("=========== PRE CHANGE VerboseListString ==============");
 //        System.out.println(boatClub.verboseListString());
@@ -82,13 +83,13 @@ public class View {
 //
 //        member.changeBoatInfo(0, 20, "SAILBOAT");
 //        System.out.println(boatClub.verboseListString());
-//        System.out.println("===================================\n\n");
+//       System.out.println("===================================\n\n");
 //
-//        System.out.println("=========== VerboseListString ==============");
-//        System.out.println(boatClub.verboseListString());
+//       System.out.println("=========== VerboseListString ==============");
+//       System.out.println(boatClub.verboseListString());
 //        System.out.println("=========== VerboseListString ==============");
 //
-//        System.out.println(boatClub.compactListString());
+//       System.out.println(boatClub.compactListString());
 //
 //        System.out.println(boatClub.getMemberInfo(0));
 //
@@ -99,6 +100,16 @@ public class View {
 //        System.out.println(boatClub.compactListString());
 //
 //        Files.write(Paths.get("ExampleMember.json"), boatClub.getJsonFileMembers().toJSONString().getBytes());
+//       System.out.println(boatClub.compactListString());
+
+		// TODO revert to check
+		//Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
+
+		
+		System.out.print("readFromFIle: \n" + new ReadJSON().getBoatClubFromJsonFile("ExampleMember.json").verboseListString());
+
+//        boolean running = true;
+//        System.out.println("Welcome to the Boat management system!");
 //
 //        Files.write(Paths.get("ExampleMember.json"), boatClub.getJsonFileMembers().toJSONString().getBytes());
 //        ObjectMapper objectMapper = new ObjectMapper();
@@ -106,26 +117,8 @@ public class View {
 //        System.out.print("readFromFIle: \n" + readFromFile.verboseListString());
 
 
-        //        boolean running = true;
-        //        System.out.println("Welcome to the Boat management system!");
-        //
-        //        UserInterface session = new UserInterface();
-        //
-        //        while (running) {
-        //            System.out.println("Choose: ");
-        //
-        //            System.out.print("\n--> Your Choice: ");
-        //
-        //            int num = sc.nextInt();
-        //            session.readChoice(num);
-        //            if (num == 6) {
-        //                running = false;
-        //            }
-        //            if (num > 6) {
-        //                throw new InvalidKeyException("Wrong Input!");
-        //            }
-        //        }
 
 
+}
 
 }
