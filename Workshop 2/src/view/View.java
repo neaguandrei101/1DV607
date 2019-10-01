@@ -18,6 +18,7 @@ public class View {
 	}
 
 	public void console() throws Exception {
+		System.out.println("===================================================");
 		System.out.println("Welcome to the Boat management system!");
 
 		System.out.println("Choose: ");
@@ -41,6 +42,11 @@ public class View {
 	public void printListTypes() {
 		System.out.println("(1) Compact List");
 		System.out.println("(2) Verbose List");
+	}
+	
+	public void printChangesToMember() {
+		System.out.println("(1) Change name : ");
+		System.out.println("(2) Change perosnal number : ");
 	}
 	
 	

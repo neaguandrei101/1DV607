@@ -14,17 +14,10 @@ public class Member {
 	@JsonProperty("boatArray")
     protected List<Boat> boatArray = new ArrayList<>();
 
-    /* TODO added empty new Boat() in the constructors
-     * because when you create a new Member()
-     * you are forced to have at least one boat
-     * the empty Boat should be filled
-     * maybe REMOVE
-     */
     public Member(String name, String personalNumber) {
         this.name = name;
         this.personalNumber = personalNumber;
         this.memberId = personalNumber.hashCode();
-      //  this.boatArray.add(new Boat());
     }
 
     public Member() {}

@@ -3,13 +3,16 @@ package controller;
 import model.Boat;
 import model.BoatClub;
 import model.Member;
+import model.ReadJSON;
 import view.View;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.util.Scanner;
 
 public class Act {
-	private BoatClub boatClub = new BoatClub();
+	private BoatClub boatClub = new ReadJSON().getBoatClubFromJsonFile("ExampleMember.json"); // reads the member list from ExampleMember.json
 	private View view = new View();
 
 	private static Scanner sc = new Scanner(System.in);
@@ -21,32 +24,35 @@ public class Act {
 		this.view.console();
 		int num = sc.nextInt();
 
-			switch (num) {
-			case 1:
-				createUser();
-				readChoice();
-				break;
-			case 2:
-				deleteUser();
-				readChoice();
-				break;
-			case 3:
-				listtAllMembers();
-				readChoice();
-				break;
-			case 4:
+		switch (num) {
+		case 1:
+			createUser();
+			readChoice();
+			break;
+		case 2:
+			deleteUser();
+			readChoice();
+			break;
+		case 3:
+			listtAllMembers();
+			readChoice();
+			break;
+		case 4:
+			changeMemberInfo();
+			readChoice();
+			break;
+		case 5:
+			lookAtMemberInfo();
+			readChoice();
+			break;
+		case 6:
+			Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
+			System.out.println("Exiting...");
+			break;
+		default:
+			throw new RuntimeException("Invalid Input!");
+		}
 
-				break;
-			case 5:
-
-				break;
-			case 6:
-				System.out.println("Exiting...");
-				break;
-			default:
-				throw new RuntimeException("Invalid Input!");
-			}
-		
 	}
 
 	public void createUser() throws Exception {
@@ -55,13 +61,14 @@ public class Act {
 		Boat firstBoat = new Boat();
 
 		System.out.print("Name: ");
-		newMember.setName(sc.next());
+		sc.nextLine();
+		newMember.setName(sc.nextLine());
 		System.out.println("Ex Personal Number '199905239898'");
 		System.out.print("Personal Number: ");
 		String personalNumber = sc.next();
 		newMember.setPersonalNumber(personalNumber);
 		newMember.setMemberId(personalNumber.hashCode());
-		
+
 		System.out.println("You have to add your first boat, enter the boat details: ");
 		firstBoat.setBoatCounter(0);
 		this.view.printBoatTypes();
@@ -97,16 +104,16 @@ public class Act {
 		System.out.println(newMember.toString());
 		System.out.println("========================================\n\n");
 	}
-	
+
 	public void deleteUser() {
 		System.out.println("Type personal number: ");
 		this.boatClub.removeMemberByPersonalNumber(sc.next());
 	}
-	
+
 	public void listtAllMembers() {
 		this.view.printListTypes();
 		System.out.println("Type list type: ");
-		switch(sc.nextInt()) {
+		switch (sc.nextInt()) {
 		case 1:
 			System.out.println(this.boatClub.compactListString());
 			break;
@@ -114,6 +121,31 @@ public class Act {
 			System.out.println(this.boatClub.verboseListString());
 			break;
 		}
+	}
 
+	public void lookAtMemberInfo() {
+		System.out.println("Enter the member's personal number : ");
+		String personalNumber = sc.next();
+		System.out.println(this.boatClub.memberInfoByPN(personalNumber));
+	}
+
+	public void changeMemberInfo() {
+		this.view.printChangesToMember();
+		System.out.println("Your choice : ");
+		
+		switch (sc.nextInt()) {
+		case 1:
+			System.out.println("Enter the members personal number");
+			String pn = sc.next();
+			System.out.println("New name :");
+			this.boatClub.changeMemberName(pn, sc.next());
+			break;
+		case 2:
+			System.out.println("Enter the members personal number");
+			String pn1 = sc.next();
+			System.out.println("New personal number :");
+			this.boatClub.changeMemberPersonalNumber(pn1, sc.next());
+			break;
+		}
 	}
 }

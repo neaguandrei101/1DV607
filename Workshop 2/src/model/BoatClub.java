@@ -32,12 +32,24 @@ public class BoatClub {
 		boolean found = false;
 		for (int i = 0; i < membersArray.size(); i++) {
 			if (membersArray.get(i).getPersonalNumber().equals(pn))
-				;
-			membersArray.remove(membersArray.get(i));
+				membersArray.remove(membersArray.get(i));
 			found = true;
 		}
 		if (!found)
 			throw new RuntimeException("Not Found!");
+	}
+
+	public String memberInfoByPN(String pn) {
+		boolean found = false;
+		String info = null;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(pn))
+				info = membersArray.get(i).toString();
+			found = true;
+		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
+		return info;
 	}
 
 	public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
@@ -48,6 +60,36 @@ public class BoatClub {
 
 		change.setName(var_changeName);
 		change.setPersonalNumber(var_changePersonalNumber);
+	}
+
+	public void changeMemberName(String personalNumber, String newName) {
+		boolean found = false;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(personalNumber))
+				try {
+					membersArray.get(i).setName(newName);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			found = true;
+		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
+	}
+	
+	public void changeMemberPersonalNumber(String personalNumber, String newPersonalNumber) {
+		boolean found = false;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(personalNumber))
+				try {
+					membersArray.get(i).setName(newPersonalNumber);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			found = true;
+		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
 	}
 
 	public String getMemberInfo(int position) {
