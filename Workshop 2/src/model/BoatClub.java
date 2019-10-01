@@ -20,13 +20,25 @@ public class BoatClub {
 		this.membersArray.add(member);
 	}
 
-	public void removeMember(int id) {
+	public void removeMember(int posInArray) {
 		try {
-			membersArray.remove(id);
+			membersArray.remove(posInArray);
 		} catch (IndexOutOfBoundsException ex) {
 			throw new RuntimeException("Not Found!");
 		}
 	}
+	
+	public void removeMemberByPersonalNumber(String pn) {
+		try {for(int i=0;i<membersArray.size();i++) {
+			if(membersArray.get(i).getPersonalNumber().equals(pn));
+				membersArray.remove(membersArray.get(i));
+		}	
+		} catch (IndexOutOfBoundsException ex) {
+			throw new RuntimeException("Not Found!");
+		}
+	}
+	
+	
 
 	public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
 		Member change = membersArray.get(position);

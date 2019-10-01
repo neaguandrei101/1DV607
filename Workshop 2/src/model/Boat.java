@@ -6,10 +6,10 @@ public class Boat {
 	private int length;
     private String boatType;
 
-    public Boat(String boatType, int length, int boatId) {
+    public Boat(String boatType, int length, int boatCounter) {
         this.boatType = boatType;
-        this.length = length; //length in centimeters
-        this.boatCounter = boatId;
+        this.length = length; //length in meters
+        this.boatCounter = boatCounter;
     }
     public Boat(){
 
@@ -19,7 +19,7 @@ public class Boat {
         return length;
     }
 
-    void setLength(int length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
@@ -34,6 +34,11 @@ public class Boat {
     public int getBoatCounter() {
 		return boatCounter;
 	}
+    
+    public void setBoatCounter(int boatCounter) {
+		this.boatCounter = boatCounter;
+	}
+
 
     public void setBoatInfo(int changeLength, String changeBoatType) throws Exception {
     	if(getType()== null)

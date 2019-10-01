@@ -55,6 +55,7 @@ public class Member {
             }
             if (valid == true)
                 this.personalNumber = personalNumber;
+            	
         } else
             throw new IndexOutOfBoundsException("Invalid Input!");
     }
@@ -69,6 +70,10 @@ public class Member {
 
     public void addBoat(String type, int length) {
         Boat boat = new Boat(type, length, boatArray.size());
+        this.boatArray.add(boat);
+    }
+    
+    public void addBoat(Boat boat) {
         this.boatArray.add(boat);
     }
 

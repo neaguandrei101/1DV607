@@ -1,17 +1,11 @@
-import view.View;
+import controller.Act;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
 
-
-        View runSession = new View();
-        runSession.console();
-
-
-
-
-
+    	Act act = new Act();
+    	act.readChoice();
 
     }
 
