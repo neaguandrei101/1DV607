@@ -30,13 +30,20 @@ public class View {
 		System.out.print("\n--> Your Choice: ");
 	}
 
-	public void printBoatTypes() throws Exception {
+	public void printBoatTypes() {
 		
 		System.out.println("(1) Sailboat");
 		System.out.println("(2) Motorsailer");
 		System.out.println("(3) Kayak/Canoe");
 		System.out.println("(4) Other");
 	}
+	
+	public void printListTypes() {
+		System.out.println("(1) Compact List");
+		System.out.println("(2) Verbose List");
+	}
+	
+	
 
 	// TODO revert to check
 	// Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());

@@ -27,18 +27,18 @@ public class BoatClub {
 			throw new RuntimeException("Not Found!");
 		}
 	}
-	
+
 	public void removeMemberByPersonalNumber(String pn) {
-		try {for(int i=0;i<membersArray.size();i++) {
-			if(membersArray.get(i).getPersonalNumber().equals(pn));
-				membersArray.remove(membersArray.get(i));
-		}	
-		} catch (IndexOutOfBoundsException ex) {
-			throw new RuntimeException("Not Found!");
+		boolean found = false;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(pn))
+				;
+			membersArray.remove(membersArray.get(i));
+			found = true;
 		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
 	}
-	
-	
 
 	public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
 		Member change = membersArray.get(position);

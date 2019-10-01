@@ -21,91 +21,99 @@ public class Act {
 		this.view.console();
 		int num = sc.nextInt();
 
-		boolean on = true;
-		while (on) {
 			switch (num) {
 			case 1:
 				createUser();
-				on = false;
 				readChoice();
 				break;
 			case 2:
 				deleteUser();
-				on = false;
 				readChoice();
 				break;
 			case 3:
-
-				on = false;
+				listtAllMembers();
+				readChoice();
 				break;
 			case 4:
 
 				break;
 			case 5:
 
-				on = false;
 				break;
 			case 6:
 				System.out.println("Exiting...");
-				on = false;
 				break;
 			default:
 				throw new RuntimeException("Invalid Input!");
 			}
-		}
+		
 	}
 
 	public void createUser() throws Exception {
 		boolean safe = false;
-		Member create = new Member();
-		Boat boat = new Boat();
+		Member newMember = new Member();
+		Boat firstBoat = new Boat();
 
 		System.out.print("Name: ");
-		create.setName(sc.next());
+		newMember.setName(sc.next());
 		System.out.println("Ex Personal Number '199905239898'");
 		System.out.print("Personal Number: ");
 		String personalNumber = sc.next();
-		create.setPersonalNumber(personalNumber);
-		create.setMemberId(personalNumber.hashCode());
+		newMember.setPersonalNumber(personalNumber);
+		newMember.setMemberId(personalNumber.hashCode());
 		
 		System.out.println("You have to add your first boat, enter the boat details: ");
-		boat.setBoatCounter(0);
+		firstBoat.setBoatCounter(0);
 		this.view.printBoatTypes();
-		System.out.println("Boat Type: ");
+		System.out.println("Type boat type: ");
 		switch (sc.nextInt()) {
 		case 1:
-			boat.setBoatType("Sailboat");
+			firstBoat.setBoatType("Sailboat");
 			break;
 		case 2:
-			boat.setBoatType("Motorsailer");
+			firstBoat.setBoatType("Motorsailer");
 			break;
 		case 3:
-			boat.setBoatType("Kayak/Canoe");
+			firstBoat.setBoatType("Kayak/Canoe");
 			break;
 		case 4:
-			boat.setBoatType("Other");
+			firstBoat.setBoatType("Other");
 			break;
 		}
 
 		System.out.println("Boat length in meters: ");
 		int num = sc.nextInt();
-		boat.setLength(num);
-		create.addBoat(boat);
+		firstBoat.setLength(num);
+		newMember.addBoat(firstBoat);
 		safe = true;
 
 		if (safe) {
-			this.boatClub.addMember(create);
+			this.boatClub.addMember(newMember);
 		} else {
 			throw new RuntimeException("Something went wrong in the user creation");
 		}
 		System.out.println("\nNew member has been added!");
 		System.out.println("========================================");
-		System.out.println(create.toString());
+		System.out.println(newMember.toString());
 		System.out.println("========================================\n\n");
 	}
 	
 	public void deleteUser() {
 		System.out.println("Type personal number: ");
 		this.boatClub.removeMemberByPersonalNumber(sc.next());
+	}
+	
+	public void listtAllMembers() {
+		this.view.printListTypes();
+		System.out.println("Type list type: ");
+		switch(sc.nextInt()) {
+		case 1:
+			System.out.println(this.boatClub.compactListString());
+			break;
+		case 2:
+			System.out.println(this.boatClub.verboseListString());
+			break;
+		}
+
 	}
 }
