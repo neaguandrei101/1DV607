@@ -139,7 +139,7 @@ public class BoatClub {
 				JSONObject jsonBoat = new JSONObject();
 				jsonBoat.put("boatCounter", boat.getBoatCounter());
 				jsonBoat.put("length", boat.getLength());
-				jsonBoat.put("type", boat.getType());
+				jsonBoat.put("boatType", boat.getType());
 				jsonMemberBoatArray.add(jsonBoat);
 			}
 			jsonMember.put("boatArray", jsonMemberBoatArray);
