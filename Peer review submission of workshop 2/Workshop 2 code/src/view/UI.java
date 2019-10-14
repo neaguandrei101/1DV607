@@ -13,8 +13,8 @@ import model.ReadJSON;
 import model.BoatClub;
 import controller.Act;
 
-public class UI {
-	public UI() {
+public class View {
+	public View() {
 	}
 
 	public void console() throws Exception {

@@ -4,15 +4,16 @@ import model.Boat;
 import model.BoatClub;
 import model.Member;
 import model.ReadJSON;
-import view.UI;
+import view.View;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
 import java.util.Scanner;
 
 public class Act {
 	private BoatClub boatClub = new ReadJSON().getBoatClubFromJsonFile("ExampleMember.json"); // reads the member list from ExampleMember.json
-	private UI UI = new UI();
+	private View view = new View();
 
 	private static Scanner sc = new Scanner(System.in);
 
@@ -20,7 +21,7 @@ public class Act {
 	}
 
 	public void readChoice() throws Exception {
-		this.UI.console();
+		this.view.console();
 		int num = sc.nextInt();
 
 		switch (num) {
@@ -70,7 +71,7 @@ public class Act {
 
 		System.out.println("You have to add your first boat, enter the boat details: ");
 		firstBoat.setBoatCounter(0);
-		this.UI.printBoatTypes();
+		this.view.printBoatTypes();
 		System.out.println("Type boat type: ");
 		switch (sc.nextInt()) {
 		case 1:
@@ -110,7 +111,7 @@ public class Act {
 	}
 
 	public void listtAllMembers() {
-		this.UI.printListTypes();
+		this.view.printListTypes();
 		System.out.println("Type list type: ");
 		switch (sc.nextInt()) {
 		case 1:
@@ -129,7 +130,7 @@ public class Act {
 	}
 
 	public void changeMemberInfo() {
-		this.UI.printChangesToMember();
+		this.view.printChangesToMember();
 		System.out.println("Your choice : ");
 		
 		switch (sc.nextInt()) {
