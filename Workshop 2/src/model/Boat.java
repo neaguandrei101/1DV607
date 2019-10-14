@@ -6,7 +6,7 @@ public class Boat {
 	private int length;
     private String boatType;
 
-    public Boat(String boatType, int length, int boatCounter) {
+    Boat(String boatType, int length, int boatCounter) {
         this.boatType = boatType;
         this.length = length; //length in meters
         this.boatCounter = boatCounter;
@@ -15,7 +15,7 @@ public class Boat {
 
     }
 
-    public int getLength() {
+     int getLength() {
         return length;
     }
 
@@ -23,7 +23,7 @@ public class Boat {
         this.length = length;
     }
 
-    public String getType() {
+     String getType() {
         return boatType;
     }
 
@@ -31,7 +31,7 @@ public class Boat {
         this.boatType = boatType;
     }
 
-    public int getBoatCounter() {
+     int getBoatCounter() {
 		return boatCounter;
 	}
     
@@ -40,7 +40,7 @@ public class Boat {
 	}
 
 
-    public void setBoatInfo(int changeLength, String changeBoatType) throws Exception {
+     void setBoatInfo(int changeLength, String changeBoatType) throws Exception {
     	if(getType()== null)
     		throw new RuntimeException("There is no Boat!");
         setLength(changeLength);

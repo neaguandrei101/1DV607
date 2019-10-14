@@ -12,8 +12,7 @@ public class BoatClub {
 	@JsonProperty("membersArray")
 	private List<Member> membersArray = new ArrayList<>();
 
-	public BoatClub() {
-
+	BoatClub() {
 	}
 
 	public void addMember(Member member) {
@@ -42,9 +41,9 @@ public class BoatClub {
 	public String memberInfoByPN(String pn) {
 		boolean found = false;
 		String info = null;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(pn))
-				info = membersArray.get(i).toString();
+		for (Member member : membersArray) {
+			if (member.getPersonalNumber().equals(pn))
+				info = member.toString();
 			found = true;
 		}
 		if (!found)
@@ -54,20 +53,16 @@ public class BoatClub {
 
 	public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
 		Member change = membersArray.get(position);
-
-		String var_changeName = changeName;
-		String var_changePersonalNumber = changePersonalNumber;
-
-		change.setName(var_changeName);
-		change.setPersonalNumber(var_changePersonalNumber);
+		change.setName(changeName);
+		change.setPersonalNumber(changePersonalNumber);
 	}
 
 	public void changeMemberName(String personalNumber, String newName) {
 		boolean found = false;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(personalNumber))
+		for (Member member : membersArray) {
+			if (member.getPersonalNumber().equals(personalNumber))
 				try {
-					membersArray.get(i).setName(newName);
+					member.setName(newName);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,10 +74,10 @@ public class BoatClub {
 	
 	public void changeMemberPersonalNumber(String personalNumber, String newPersonalNumber) {
 		boolean found = false;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(personalNumber))
+		for (Member member : membersArray) {
+			if (member.getPersonalNumber().equals(personalNumber))
 				try {
-					membersArray.get(i).setName(newPersonalNumber);
+					member.setPersonalNumber(newPersonalNumber);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -145,9 +140,8 @@ public class BoatClub {
 			jsonMember.put("boatArray", jsonMemberBoatArray);
 			jsonMemberArray.add(jsonMember);
 		}
-		JSONObject jsonClubHouse = new JSONObject();
-		jsonClubHouse.put("membersArray", jsonMemberArray);
-		return jsonClubHouse;
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("membersArray", jsonMemberArray);
+		return jsonObject;
 	}
-
 }

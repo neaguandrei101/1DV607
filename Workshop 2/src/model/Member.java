@@ -22,7 +22,7 @@ public class Member {
 
     public Member() {}
 
-    public String getName() {
+     String getName() {
         return name;
     }
 
@@ -33,7 +33,7 @@ public class Member {
             throw new RuntimeException("Name length to short!");
     }
 
-    public String getPersonalNumber() {
+     String getPersonalNumber() {
         return personalNumber;
     }
 
@@ -46,7 +46,7 @@ public class Member {
                 else
                     valid = false;
             }
-            if (valid == true)
+            if (valid)
                 this.personalNumber = personalNumber;
             	
         } else

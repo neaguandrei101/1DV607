@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Act {
-	private BoatClub boatClub = new ReadJSON().getBoatClubFromJsonFile("ExampleMember.json"); // reads the member list from ExampleMember.json
+	private BoatClub boatClub = ReadJSON.getBoatClubFromJsonFile("ExampleMember.json"); // reads the member list from ExampleMember.json
 	private UI UI = new UI();
 
 	private static Scanner sc = new Scanner(System.in);
