@@ -53,6 +53,10 @@ public class Act {
 			System.out.println("Exiting...");
 			break;
 			case 8:
+				printChangeBoatInfo();
+				readChoice();
+				break;
+			case 9:
 				printDeleteBoat();
 				readChoice();
 				break;
@@ -177,7 +181,27 @@ public class Act {
 		String personalNumber = sc.next();
 		System.out.println("Type the boat pos: ");
 		int pos = sc.nextInt();
+		String newBoatType = null;
+		System.out.println("Type new boat type: ");
+		this.ui.printBoatTypes();
+		switch (sc.nextInt()) {
+			case 1:
+				newBoatType="Sailboat";
+				break;
+			case 2:
+				newBoatType="Motorsailer";
+				break;
+			case 3:
+				newBoatType="Kayak/Canoe";
+				break;
+			case 4:
+				newBoatType="Other";
+				break;
+		}
+		System.out.println("Type new boat length: ");
+		int newLength = sc.nextInt();
 
+		this.boatClub.changeBoatInfoFromMember(personalNumber,pos,newLength,newBoatType);
 	}
 
 

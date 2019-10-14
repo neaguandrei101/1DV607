@@ -40,6 +40,17 @@ public class BoatClub {
 			throw new RuntimeException("Not Found!");
 	}
 
+	public void changeBoatInfoFromMember(String pn, int boatPos, int length, String boatType) {
+		boolean found = false;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(pn))
+				membersArray.get(i).changeBoatInfo(boatPos, length,boatType);
+			found = true;
+		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
+	}
+
 	public String memberInfoByPN(String pn) {
 		boolean found = false;
 		String info = null;
@@ -51,12 +62,6 @@ public class BoatClub {
 		if (!found)
 			throw new RuntimeException("Not Found!");
 		return info;
-	}
-
-	public void changeMemberInfo(int position, String changeName, String changePersonalNumber) throws Exception {
-		Member change = membersArray.get(position);
-		change.setName(changeName);
-		change.setPersonalNumber(changePersonalNumber);
 	}
 
 	public void changeMemberName(String personalNumber, String newName) {

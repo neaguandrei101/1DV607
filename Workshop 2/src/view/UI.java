@@ -29,7 +29,8 @@ public class UI {
 		System.out.println("(5) Look at a specific member’s information");
 		System.out.println("(6) Read from a Registry.json");
 		System.out.println("(7) Exit and save .JSON to default path");
-		System.out.println("(8) Delete a Boat");
+		System.out.println("(8) Change a boat’s information");
+		System.out.println("(9) Delete a Boat");
 		System.out.print("\n--> Your Choice: ");
 	}
 

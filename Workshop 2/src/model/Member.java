@@ -82,7 +82,7 @@ public class Member {
         return boatArray.size();
     }
 
-    public void changeBoatInfo(int position, int length, String boatType) throws Exception {
+    public void changeBoatInfo(int position, int length, String boatType) {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
