@@ -55,6 +55,7 @@ public class Act {
 	}
 
 	public void createUser() throws Exception {
+		boolean created = false;
 		boolean safe = false;
 		Member newMember = new Member();
 		Boat firstBoat = new Boat();
@@ -95,6 +96,8 @@ public class Act {
 
 		if (safe) {
 			this.boatClub.addMember(newMember);
+			if(newMember== null);
+			created = true;
 		} else {
 			throw new RuntimeException("Something went wrong in the user creation");
 		}
@@ -102,6 +105,7 @@ public class Act {
 		System.out.println("========================================");
 		System.out.println(newMember.toString());
 		System.out.println("========================================\n\n");
+		return created;
 	}
 
 	public void deleteUser() {
