@@ -6,7 +6,6 @@ public class App {
 
     	Act act = new Act();
     	act.readChoice();
-
     }
 
 }

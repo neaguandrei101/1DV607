@@ -27,7 +27,9 @@ public class UI {
 		System.out.println("(3) Show lists of all members in two different ways");
 		System.out.println("(4) Change a Member's Information");
 		System.out.println("(5) Look at a specific member’s information");
-		System.out.println("(6) Exit");
+		System.out.println("(6) Read from a Registry.json");
+		System.out.println("(7) Exit and save .JSON to default path");
+		System.out.println("(8) Delete a Boat");
 		System.out.print("\n--> Your Choice: ");
 	}
 
@@ -48,6 +50,9 @@ public class UI {
 		System.out.println("(1) Change name : ");
 		System.out.println("(2) Change perosnal number : ");
 	}
+
+
+
 	
 	
 

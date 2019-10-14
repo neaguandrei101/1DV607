@@ -62,7 +62,7 @@ public class Member {
     }
 
     public void addBoat(String type, int length) {
-        Boat boat = new Boat(type, length, boatArray.size());
+        Boat boat = new Boat(type, length);
         this.boatArray.add(boat);
     }
     
@@ -89,7 +89,7 @@ public class Member {
     public String printBoatArray() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
-            sb.append(boat.toString());
+            sb.append(boat.toString() + ", pos:" + (this.boatArray.size()-1) + "\n");
         }
         return sb.toString();
     }

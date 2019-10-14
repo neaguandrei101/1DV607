@@ -2,14 +2,12 @@ package model;
 
 public class Boat {
 
-    private int boatCounter = 0;
 	private int length;
     private String boatType;
 
-    Boat(String boatType, int length, int boatCounter) {
+    Boat(String boatType, int length) {
         this.boatType = boatType;
         this.length = length; //length in meters
-        this.boatCounter = boatCounter;
     }
     public Boat(){
 
@@ -31,16 +29,7 @@ public class Boat {
         this.boatType = boatType;
     }
 
-     int getBoatCounter() {
-		return boatCounter;
-	}
-    
-    public void setBoatCounter(int boatCounter) {
-		this.boatCounter = boatCounter;
-	}
-
-
-     void setBoatInfo(int changeLength, String changeBoatType) throws Exception {
+     void setBoatInfo(int changeLength, String changeBoatType) {
     	if(getType()== null)
     		throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
@@ -49,7 +38,7 @@ public class Boat {
 
     @Override
     public String toString() {
-        return "Type: " + " " + this.boatType + " , " + "length: " + this.length + " , " + "id: " + this.boatCounter + "\n";
+        return "Type: " + " " + this.boatType + " , " + "length: " + this.length;
     }
     
 }

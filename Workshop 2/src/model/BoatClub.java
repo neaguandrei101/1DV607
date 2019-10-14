@@ -19,19 +19,21 @@ public class BoatClub {
 		this.membersArray.add(member);
 	}
 
-	public void removeMember(int posInArray) {
-		try {
-			membersArray.remove(posInArray);
-		} catch (IndexOutOfBoundsException ex) {
-			throw new RuntimeException("Not Found!");
-		}
-	}
-
 	public void removeMemberByPersonalNumber(String pn) {
 		boolean found = false;
 		for (int i = 0; i < membersArray.size(); i++) {
 			if (membersArray.get(i).getPersonalNumber().equals(pn))
 				membersArray.remove(membersArray.get(i));
+			found = true;
+		}
+		if (!found)
+			throw new RuntimeException("Not Found!");
+	}
+	public void removeBoatFromMember(String pn, int boatPos) {
+		boolean found = false;
+		for (int i = 0; i < membersArray.size(); i++) {
+			if (membersArray.get(i).getPersonalNumber().equals(pn))
+				membersArray.get(i).removeBoat(boatPos);
 			found = true;
 		}
 		if (!found)
@@ -132,7 +134,6 @@ public class BoatClub {
 			JSONArray jsonMemberBoatArray = new JSONArray();
 			for (Boat boat : member.boatArray) {
 				JSONObject jsonBoat = new JSONObject();
-				jsonBoat.put("boatCounter", boat.getBoatCounter());
 				jsonBoat.put("length", boat.getLength());
 				jsonBoat.put("boatType", boat.getType());
 				jsonMemberBoatArray.add(jsonBoat);
