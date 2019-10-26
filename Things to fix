@@ -1,6 +1,0 @@
- fix sequence diagrams and class diagrams
- fix id by hash. create an unique hash function
- ask on slack what are objects are connected by keys
- fix static Scanner in act
- JSON class should be static
- JSON class will be moved to controller
