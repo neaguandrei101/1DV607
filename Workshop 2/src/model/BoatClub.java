@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BoatClub {
@@ -29,11 +28,12 @@ public class BoatClub {
 		if (!found)
 			throw new RuntimeException("Not Found!");
 	}
+
 	public void removeBoatFromMember(String pn, int boatPos) {
 		boolean found = false;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(pn))
-				membersArray.get(i).removeBoat(boatPos);
+		for (Member member : membersArray) {
+			if (member.getPersonalNumber().equals(pn))
+				member.removeBoat(boatPos);
 			found = true;
 		}
 		if (!found)
@@ -42,9 +42,9 @@ public class BoatClub {
 
 	public void changeBoatInfoFromMember(String pn, int boatPos, int length, String boatType) {
 		boolean found = false;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(pn))
-				membersArray.get(i).changeBoatInfo(boatPos, length,boatType);
+		for (Member member : membersArray) {
+			if (member.getPersonalNumber().equals(pn))
+				member.changeBoatInfo(boatPos, length, boatType);
 			found = true;
 		}
 		if (!found)
@@ -92,12 +92,6 @@ public class BoatClub {
 		}
 		if (!found)
 			throw new RuntimeException("Not Found!");
-	}
-
-	public String getMemberInfo(int position) {
-
-		Member member = membersArray.get(position);
-		return member.toString();
 	}
 
 	public String compactListString() {

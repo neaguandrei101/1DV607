@@ -12,13 +12,7 @@ public class Member {
     private int memberId;
     
 	@JsonProperty("boatArray")
-    protected List<Boat> boatArray = new ArrayList<>();
-
-    public Member(String name, String personalNumber) {
-        this.name = name;
-        this.personalNumber = personalNumber;
-        this.memberId = personalNumber.hashCode();
-    }
+    List<Boat> boatArray = new ArrayList<>();
 
     public Member() {}
 
@@ -53,7 +47,7 @@ public class Member {
             throw new IndexOutOfBoundsException("Invalid Input!");
     }
 
-    public int getMemberId() {
+    int getMemberId() {
         return this.memberId;
     }
 
@@ -70,7 +64,7 @@ public class Member {
         this.boatArray.add(boat);
     }
 
-    public void removeBoat(int id) {
+    void removeBoat(int id) {
         try{
             boatArray.remove(id);}
         catch (IndexOutOfBoundsException ex){
@@ -78,15 +72,15 @@ public class Member {
         }
     }
 
-    public int getNumberOfBoats() {
+    int getNumberOfBoats() {
         return boatArray.size();
     }
 
-    public void changeBoatInfo(int position, int length, String boatType) {
+    void changeBoatInfo(int position, int length, String boatType) {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
-    public String printBoatArray() {
+    String printBoatArray() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
             sb.append(boat.toString() + ", pos:" + (this.boatArray.size()-1) + "\n");

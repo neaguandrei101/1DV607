@@ -14,7 +14,7 @@ public class Act {
 	private BoatClub boatClub = null;
 	private UI ui = new UI();
 
-	private static Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
 
 	public Act() {
 	}
@@ -66,7 +66,7 @@ public class Act {
 		}
 	}
 
-	public boolean createUser() throws Exception {
+	private boolean createUser() throws Exception {
 		boolean created = false;
 		boolean safe = false;
 		Member newMember = new Member();
@@ -118,12 +118,12 @@ public class Act {
 		return created;
 	}
 
-	public void deleteUser() {
+	private void deleteUser() {
 		System.out.println("Type personal number: ");
 		this.boatClub.removeMemberByPersonalNumber(sc.next());
 	}
 
-	public void listtAllMembers() {
+	private void listtAllMembers() {
 		this.ui.printListTypes();
 		System.out.println("Type list type: ");
 		switch (sc.nextInt()) {
@@ -136,19 +136,19 @@ public class Act {
 		}
 	}
 
-	public void printReadFromRegistryMessage() {
+	private void printReadFromRegistryMessage() {
 		System.out.println("Type absolute path of the registry you want to read from: ");
 		sc.nextLine();
 		this.boatClub = ReadJSON.getBoatClubFromJsonFile(sc.nextLine());
 	}
 
-	public void lookAtMemberInfo() {
+	private void lookAtMemberInfo() {
 		System.out.println("Enter the member's personal number : ");
 		String personalNumber = sc.next();
 		System.out.println(this.boatClub.memberInfoByPN(personalNumber));
 	}
 
-	public void changeMemberInfo() {
+	private void changeMemberInfo() {
 		this.ui.printChangesToMember();
 		System.out.println("Your choice : ");
 		
@@ -168,7 +168,7 @@ public class Act {
 		}
 	}
 
-	public void printDeleteBoat() {
+	private void printDeleteBoat() {
 		System.out.println("Type personal number of the member you want to delete the boat from: ");
 		String personalNumber = sc.next();
 		System.out.println("Type the boat pos: ");
@@ -176,7 +176,7 @@ public class Act {
 		this.boatClub.removeBoatFromMember(personalNumber, pos);
 	}
 
-	public void printChangeBoatInfo() {
+	private void printChangeBoatInfo() {
 		System.out.println("Type personal number of the member you want to delete the boat from: ");
 		String personalNumber = sc.next();
 		System.out.println("Type the boat pos: ");

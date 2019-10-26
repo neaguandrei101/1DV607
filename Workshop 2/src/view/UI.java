@@ -1,18 +1,5 @@
 package view;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.InvalidKeyException;
-import java.util.Scanner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import model.Member;
-import model.ReadJSON;
-import model.BoatClub;
-import controller.Act;
-
 public class UI {
 	public UI() {
 	}
@@ -20,7 +7,6 @@ public class UI {
 	public void console() throws Exception {
 		System.out.println("===================================================");
 		System.out.println("Welcome to the Boat management system!");
-
 		System.out.println("Choose: ");
 		System.out.println("(1) Register a new Member");
 		System.out.println("(2) Delete a Member");
@@ -51,24 +37,5 @@ public class UI {
 		System.out.println("(1) Change name : ");
 		System.out.println("(2) Change perosnal number : ");
 	}
-
-
-
-	
-	
-
-	// TODO revert to check
-	// Files.write(Paths.get("ExampleMember.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
-
-	// System.out.print("readFromFIle: \n" + new
-	// ReadJSON().getBoatClubFromJsonFile("ExampleMember.json").verboseListString());
-
-//        boolean running = true;
-//        System.out.println("Welcome to the Boat management system!");
-//
-//        Files.write(Paths.get("ExampleMember.json"), boatClub.getJsonFileMembers().toJSONString().getBytes());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        BoatClub readFromFile = objectMapper.readValue(new File("ExampleMember.json"), BoatClub.class);
-//        System.out.print("readFromFIle: \n" + readFromFile.verboseListString());
 
 }

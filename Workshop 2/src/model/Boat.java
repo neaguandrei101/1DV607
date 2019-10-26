@@ -7,7 +7,7 @@ public class Boat {
 
     Boat(String boatType, int length) {
         this.boatType = boatType;
-        this.length = length; //length in meters
+        this.length = length;
     }
     public Boat(){
 

@@ -9,8 +9,16 @@
     "memberId": 375600250
   }, {
     "boatArray": [],
-    "name": "another member",
+    "name": "member",
     "personalNumber": "199809221000",
     "memberId": 216297007
+  }, {
+    "boatArray": [{
+      "length": 222,
+      "boatType": "Sailboat"
+    }],
+    "name": "Hero",
+    "personalNumber": "199905239898",
+    "memberId": -845035060
   }]
 }
