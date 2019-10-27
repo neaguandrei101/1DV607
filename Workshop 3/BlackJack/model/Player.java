@@ -17,7 +17,7 @@ public class Player {
   
   public void DealCard(Card a_addToHand)
   {
-    m_hand.add(a_addToHand);
+      m_hand.add(a_addToHand);
   }
   
   public Iterable<Card> GetHand()
