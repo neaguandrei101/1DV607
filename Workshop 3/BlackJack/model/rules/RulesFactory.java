@@ -12,4 +12,7 @@ public class RulesFactory {
     public INewGameStrategy GetNewGameRule() {
     return new AmericanNewGameStrategy();
   }
+
+    public IWinStrategy GetDealerWinsRule() { return new DealerWinsStrategy(); }
+    public IWinStrategy GetPlayerWinsRule() { return new PlayerWinsStrategy(); }
 }
