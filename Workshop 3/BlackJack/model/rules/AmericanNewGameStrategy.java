@@ -3,29 +3,20 @@ package BlackJack.model.rules;
 import BlackJack.model.Deck;
 import BlackJack.model.Dealer;
 import BlackJack.model.Player;
-import BlackJack.model.Card;  
+import BlackJack.model.Card;
 
 class AmericanNewGameStrategy implements INewGameStrategy {
+    private Dealer theDealer;
 
-  public boolean NewGame(Deck a_deck, Dealer a_dealer, Player a_player) {
-    Card c;
+    public boolean NewGame(Deck a_deck, Dealer a_dealer, Player a_player) {
+        Card c;
+        theDealer = a_dealer;
 
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
+        theDealer.DealCard(a_player, true);
+        theDealer.DealCard(a_dealer, true);
+        theDealer.DealCard(a_player, true);
+        theDealer.DealCard(a_dealer, false);
 
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_dealer.DealCard(c);
-
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
-
-    c = a_deck.GetCard();
-    c.Show(false);
-    a_dealer.DealCard(c);
-
-    return true;
-  }
+        return true;
+    }
 }
