@@ -2,6 +2,6 @@ package BlackJack.model.rules;
 
 public interface ITheWinnerStrategy {
 
-    boolean isWinner(int dealerScore, int playerScore);
+    boolean isDealerWinner(int dealerScore, int playerScore, int maxScore);
 
 }
