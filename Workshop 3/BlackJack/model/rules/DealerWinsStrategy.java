@@ -1,16 +1,13 @@
 package BlackJack.model.rules;
 
-import BlackJack.model.Dealer;
-import BlackJack.model.Player;
-
-public class DealerWinsStrategy implements IWinStrategy {
+public class DealerWinsStrategy implements ITheWinnerStrategy {
     @Override
-    public boolean isDealerWinner(Player a_player, Dealer a_dealer, int maxScore) {
-        if (a_player.CalcScore() > maxScore) {
+    public boolean isDealerWinner(int playerScore,int dealerScore, int maxScore) {
+        if (playerScore > maxScore) {
             return true;
-        } else if (a_dealer.CalcScore() > maxScore) {
+        } else if (dealerScore > maxScore) {
             return false;
         }
-        return a_dealer.CalcScore() >= a_player.CalcScore();
+        return dealerScore >= playerScore;
     }
 }

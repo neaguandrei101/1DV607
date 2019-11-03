@@ -2,8 +2,6 @@ package BlackJack.model;
 
 import BlackJack.model.rules.*;
 
-import java.util.Iterator;
-
 public class Dealer extends Player {
 
     private Deck m_deck;
@@ -13,9 +11,9 @@ public class Dealer extends Player {
 
     public Dealer(RulesFactory a_rulesFactory) {
 
-        m_newGameRule = a_rulesFactory.GetNewGameRule();
-        m_hitRule = a_rulesFactory.GetHitRule();
-        m_winnerRule = a_rulesFactory.GetNewRule();
+        m_newGameRule = a_rulesFactory.GetAmericanGameRule();
+        m_hitRule = a_rulesFactory.GetSoft17HitRule();
+        m_winnerRule = a_rulesFactory.GetDealerWinRule();
     }
 
     public boolean NewGame(Player a_player) {
@@ -38,14 +36,7 @@ public class Dealer extends Player {
     }
 
     public boolean IsDealerWinner(Player a_player) {
-        if (a_player.CalcScore() > g_maxScore) {
-            return true;
-        } else if (CalcScore() > g_maxScore) {
-            return false;
-
-        }
-        return m_winnerRule.isWinner(this.CalcScore(), a_player.CalcScore());
-
+        return m_winnerRule.isDealerWinner(CalcScore(), a_player.CalcScore(), g_maxScore);
     }
 
     public boolean IsGameOver() {
