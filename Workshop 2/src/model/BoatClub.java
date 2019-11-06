@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -122,7 +123,7 @@ public class BoatClub {
 		return stringBuilder.toString();
 	}
 
-	public JSONObject getJsonFileMembers() throws Exception {
+	public JSONObject getJsonFileMembers() {
 		JSONArray jsonMemberArray = new JSONArray();
 		for (Member member : membersArray) {
 			JSONObject jsonMember = new JSONObject();
@@ -144,4 +145,19 @@ public class BoatClub {
 		jsonObject.put("membersArray", jsonMemberArray);
 		return jsonObject;
 	}
+
+    public int generateId() {
+        Random rand = new Random();
+        boolean idAlreadyExists = false;
+        int randomId = rand.nextInt(999) + 1;
+
+        idAlreadyExists = this.membersArray.stream()
+                .anyMatch(member -> member.getMemberId() == randomId);
+        if(!idAlreadyExists) {
+            return randomId;
+        } else {
+            generateId();
+        }
+        return 0;
+    }
 }
