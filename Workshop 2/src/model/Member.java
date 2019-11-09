@@ -19,7 +19,7 @@ public class Member {
         return name;
     }
 
-    public void setName(String name) throws Exception {
+    public void setName(String name) {
         if (name.length() >= 3)
             this.name = name;
         else
@@ -30,7 +30,7 @@ public class Member {
         return personalNumber;
     }
 
-    public void setPersonalNumber(String personalNumber) throws Exception {
+    public void setPersonalNumber(String personalNumber) throws RuntimeException {
         boolean valid = true;
         if (personalNumber.length() == 12) {
             for (int i = 0; i < personalNumber.length(); i++) {
@@ -42,7 +42,7 @@ public class Member {
             if (valid)
                 this.personalNumber = personalNumber;
         } else
-            throw new IndexOutOfBoundsException("Invalid Input!");
+            throw new RuntimeException("Invalid Input Personal Number!");
     }
 
     int getMemberId() {
@@ -66,7 +66,7 @@ public class Member {
         try{
             boatArray.remove(id);}
         catch (IndexOutOfBoundsException ex){
-            throw new RuntimeException("Not Found!");
+            throw new RuntimeException("Boat Not Found!");
         }
     }
 
