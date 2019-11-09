@@ -3,11 +3,9 @@ package controller;
 import model.Boat;
 import model.BoatClub;
 import model.Member;
-import model.ReadJSON;
+import model.RegistryHandler;
 import view.UI;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Act {
@@ -19,52 +17,52 @@ public class Act {
 	public Act() {
 	}
 
-	public void readChoice() throws Exception {
-		this.ui.console();
-		int num = sc.nextInt();
-
-		switch (num) {
-		case 1:
-			createUser();
-			readChoice();
-			break;
-		case 2:
-			deleteUser();
-			readChoice();
-			break;
-		case 3:
-			listtAllMembers();
-			readChoice();
-			break;
-		case 4:
-			changeMemberInfo();
-			readChoice();
-			break;
-		case 5:
-			lookAtMemberInfo();
-			readChoice();
-			break;
-			case 6:
-				printReadFromRegistryMessage();
-				readChoice();
-				break;
-			case 7:
-			Files.write(Paths.get("LocalBoatClubRegistry.json"),boatClub.getJsonFileMembers().toJSONString().getBytes());
-			System.out.println("Exiting...");
-			break;
-			case 8:
-				printChangeBoatInfo();
-				readChoice();
-				break;
-			case 9:
-				printDeleteBoat();
-				readChoice();
-				break;
-
-		default:
-			throw new RuntimeException("Invalid Input!");
-		}
-	}
+    public void readChoice() throws Exception {
+        this.ui.console();
+        int num = sc.nextInt();
+        switch (num) {
+            case 1:
+                createUser();
+                readChoice();
+                break;
+            case 2:
+                deleteUser();
+                readChoice();
+                break;
+            case 3:
+                listtAllMembers();
+                readChoice();
+                break;
+            case 4:
+                changeMemberInfo();
+                readChoice();
+                break;
+            case 5:
+                lookAtMemberInfo();
+                readChoice();
+                break;
+            case 6:
+                printReadFromRegistryMessage();
+                readChoice();
+                break;
+            case 7:
+                RegistryHandler.saveBoatClubToJsonFile("LocalBoatClubRegistry.json", this.boatClub);
+                System.out.println("Exiting...");
+                break;
+            case 8:
+                printChangeBoatInfo();
+                readChoice();
+                break;
+            case 9:
+                printDeleteBoat();
+                readChoice();
+                break;
+            default:
+                System.out.println("Wrong input, try again");
+                readChoice();
+                break;
+        }
+    }
 
 	private boolean createUser() throws Exception {
 		boolean created = false;
@@ -79,7 +77,7 @@ public class Act {
 		System.out.print("Personal Number: ");
 		String personalNumber = sc.next();
 		newMember.setPersonalNumber(personalNumber);
-		newMember.setMemberId(personalNumber.hashCode());
+		newMember.setMemberId(this.boatClub.generateId());
 
 		System.out.println("You have to add your first boat, enter the boat details: ");
 		this.ui.printBoatTypes();
@@ -137,9 +135,8 @@ public class Act {
 	}
 
 	private void printReadFromRegistryMessage() {
-		System.out.println("Type absolute path of the registry you want to read from: ");
-		sc.nextLine();
-		this.boatClub = ReadJSON.getBoatClubFromJsonFile(sc.nextLine());
+		System.out.println("Automatically read from LocalBoatClubRegistry.json, path relative: ");
+		this.boatClub = RegistryHandler.getBoatClubFromJsonFile("LocalBoatClubRegistry.json");
 	}
 
 	private void lookAtMemberInfo() {
@@ -203,6 +200,4 @@ public class Act {
 
 		this.boatClub.changeBoatInfoFromMember(personalNumber,pos,newLength,newBoatType);
 	}
-
-
 }

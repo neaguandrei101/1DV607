@@ -5,18 +5,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class Member {
     private String name;
     private String personalNumber;
     private int memberId;
-    
-	@JsonProperty("boatArray")
+
+    @JsonProperty("boatArray")
     List<Boat> boatArray = new ArrayList<>();
 
     public Member() {}
 
-     String getName() {
+    String getName() {
         return name;
     }
 
@@ -27,7 +26,7 @@ public class Member {
             throw new RuntimeException("Name length to short!");
     }
 
-     String getPersonalNumber() {
+    String getPersonalNumber() {
         return personalNumber;
     }
 
@@ -42,7 +41,6 @@ public class Member {
             }
             if (valid)
                 this.personalNumber = personalNumber;
-            	
         } else
             throw new IndexOutOfBoundsException("Invalid Input!");
     }
@@ -59,7 +57,7 @@ public class Member {
         Boat boat = new Boat(type, length);
         this.boatArray.add(boat);
     }
-    
+
     public void addBoat(Boat boat) {
         this.boatArray.add(boat);
     }
@@ -80,10 +78,10 @@ public class Member {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
-    String printBoatArray() {
+    String boatArrayToString() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
-            sb.append(boat.toString() + ", pos:" + (this.boatArray.size()-1) + "\n");
+            sb.append(boat.toString()).append(", pos:").append(this.boatArray.size() - 1).append("\n");
         }
         return sb.toString();
     }

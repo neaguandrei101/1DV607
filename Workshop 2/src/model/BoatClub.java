@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,8 +12,7 @@ public class BoatClub {
 	@JsonProperty("membersArray")
 	private List<Member> membersArray = new ArrayList<>();
 
-	BoatClub() {
-	}
+	BoatClub() {}
 
 	public void addMember(Member member) {
 		this.membersArray.add(member);
@@ -98,11 +98,11 @@ public class BoatClub {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
-			stringBuilder.append(member.getName() + " ,");
+			stringBuilder.append(member.getName()).append(" ,");
 			stringBuilder.append("id: ");
-			stringBuilder.append(member.getMemberId() + " ,");
+			stringBuilder.append(member.getMemberId()).append(" ,");
 			stringBuilder.append("boats: ");
-			stringBuilder.append(member.getNumberOfBoats() + "\n");
+			stringBuilder.append(member.getNumberOfBoats()).append("\n");
 		}
 		return stringBuilder.toString();
 	}
@@ -111,18 +111,33 @@ public class BoatClub {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
-			stringBuilder.append(member.getName() + " ,");
+			stringBuilder.append(member.getName()).append(" ,");
 			stringBuilder.append("Personal number: ");
-			stringBuilder.append(member.getPersonalNumber() + " ,");
+			stringBuilder.append(member.getPersonalNumber()).append(" ,");
 			stringBuilder.append("id: ");
-			stringBuilder.append(member.getMemberId() + "\n");
+			stringBuilder.append(member.getMemberId()).append("\n");
 			stringBuilder.append("boat list: \n");
-			stringBuilder.append(member.printBoatArray());
+			stringBuilder.append(member.boatArrayToString());
 		}
 		return stringBuilder.toString();
 	}
 
-	public JSONObject getJsonFileMembers() throws Exception {
+    public int generateId() {
+        Random rand = new Random();
+        boolean idAlreadyExists = false;
+        int randomId = rand.nextInt(999) + 1;
+
+        idAlreadyExists = this.membersArray.stream()
+                .anyMatch(member -> member.getMemberId() == randomId);
+        if(!idAlreadyExists) {
+            return randomId;
+        } else {
+            generateId();
+        }
+        return 0;
+    }
+
+	public byte[] getJsonFileMembers() {
 		JSONArray jsonMemberArray = new JSONArray();
 		for (Member member : membersArray) {
 			JSONObject jsonMember = new JSONObject();
@@ -142,6 +157,6 @@ public class BoatClub {
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("membersArray", jsonMemberArray);
-		return jsonObject;
+		return jsonObject.toJSONString().getBytes();
 	}
 }
