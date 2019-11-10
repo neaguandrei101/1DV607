@@ -7,3 +7,4 @@ Changed all the functions in BoatClub to search by id instead of personalNumber 
 Removed the view responsibility form the model classes.
 Removed hidden dependency between view and controller.
 Removed business logic in the controller, now createUser() is much better.
+Created addBoatToMember() since it was missing.
