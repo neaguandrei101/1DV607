@@ -2,7 +2,8 @@ Changelog:
 Created generateId() that deals with the id generation, checks if id is distinct. Deleted hash.
 Created saveBoatClubToJsonFile() in RegistryHandler that deals with the JSON writing in a nicer way while removing exposure to the controller.
 Changed method name from printBoatArray() to boatArrayToString() since this is what it does and it was a naming inconsistency.
-    This made the corrector to thing that the model has UI responsibility.
-    I have not found and other UI responsibilities in the model.
-Changed all the functions in BoatClub to search by id instead of personalNumber and made them with functional programming
+Changed all the functions in BoatClub to search by id instead of personalNumber and made them with functional programming,
     this improved readability greatly and shortened the number of lines.
+Removed the view responsibility form the model classes.
+Removed hidden dependency between view and controller.
+Removed business logic in the controller, now createUser() is much better.
