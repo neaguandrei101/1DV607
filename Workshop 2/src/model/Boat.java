@@ -4,11 +4,12 @@ public class Boat {
     private int length;
     private String boatType;
 
-    Boat(String boatType, int length) {
+    public Boat() {} // this is bad but it is required by RegistryHandler
+
+    public Boat(String boatType, int length) {
         this.boatType = boatType;
         this.length = length;
     }
-    public Boat(){}
 
     int getLength() {
         return length;

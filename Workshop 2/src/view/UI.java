@@ -4,7 +4,7 @@ public class UI {
 	public UI() {
 	}
 
-	public void console() throws Exception {
+	public void console() {
 		System.out.println("===================================================");
 		System.out.println("Welcome to the Boat management system!");
 		System.out.println("Choose: ");

@@ -13,7 +13,7 @@ public class BoatClub {
 	@JsonProperty("membersArray")
 	private List<Member> membersArray = new ArrayList<>();
 
-	BoatClub() {}
+	BoatClub() {} // this is bad but it is required by RegistryHandler
 
 	public void addMember(Member member) {
 		this.membersArray.add(member);
@@ -61,11 +61,7 @@ public class BoatClub {
         Optional<Member> memberOptional= this.membersArray.stream()
                 .filter(member -> member.getMemberId() == id)
                 .findAny();
-        try {
-            memberOptional.ifPresent(member -> member.setPersonalNumber(newPersonalNumber));
-        } catch (RuntimeException e){
-            e.printStackTrace();
-        }
+        memberOptional.ifPresent(member -> member.setPersonalNumber(newPersonalNumber));
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 
@@ -99,7 +95,7 @@ public class BoatClub {
 
     public int generateId() {
         Random rand = new Random();
-        boolean idAlreadyExists = false;
+        boolean idAlreadyExists;
         int randomId = rand.nextInt(999) + 1;
 
         idAlreadyExists = this.membersArray.stream()

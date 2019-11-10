@@ -12,8 +12,14 @@ public class Member {
 
     @JsonProperty("boatArray")
     List<Boat> boatArray = new ArrayList<>();
+    public  Member() {} // this is bad but it is required by RegistryHandler
 
-    public Member() {}
+    public Member(String name, String personalNumber, int memberId, Boat boat) {
+        this.name = name;
+        this.personalNumber = personalNumber;
+        this.memberId = memberId;
+        boatArray.add(boat);
+    }
 
     String getName() {
         return name;
@@ -51,11 +57,6 @@ public class Member {
 
     public void setMemberId(int memberId) {
         this.memberId = memberId;
-    }
-
-    public void addBoat(String type, int length) {
-        Boat boat = new Boat(type, length);
-        this.boatArray.add(boat);
     }
 
     public void addBoat(Boat boat) {
