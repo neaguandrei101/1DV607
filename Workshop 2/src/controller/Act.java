@@ -32,7 +32,7 @@ public class Act {
                 readChoice();
                 break;
             case 3:
-                listtAllMembers();
+                listAllMembers();
                 readChoice();
                 break;
             case 4:
@@ -114,7 +114,7 @@ public class Act {
         this.boatClub.removeMember(sc.nextInt());
     }
 
-    private void listtAllMembers() {
+    private void listAllMembers() {
         this.ui.printListTypes();
         System.out.println("Type list type: ");
         switch (sc.nextInt()) {

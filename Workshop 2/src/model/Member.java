@@ -12,7 +12,11 @@ public class Member {
 
     @JsonProperty("boatArray")
     List<Boat> boatArray = new ArrayList<>();
-    public  Member() {} // this is bad but it is required by RegistryHandler
+
+    // can't remove
+    // this is bad but it is required by RegistryHandler
+    public Member() {
+    }
 
     public Member(String name, String personalNumber, int memberId, Boat boat) {
         this.name = name;
@@ -64,9 +68,9 @@ public class Member {
     }
 
     void removeBoat(int id) {
-        try{
-            boatArray.remove(id);}
-        catch (IndexOutOfBoundsException ex){
+        try {
+            boatArray.remove(id);
+        } catch (IndexOutOfBoundsException ex) {
             throw new RuntimeException("Boat Not Found!");
         }
     }
@@ -82,14 +86,14 @@ public class Member {
     String boatArrayToString() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
-            sb.append(boat.toString()).append(", pos:").append(this.boatArray.size() - 1).append("\n");
+            sb.append(boat.toString()).append(", pos:").append(this.boatArray.indexOf(boat)).append("\n");
         }
         return sb.toString();
     }
 
     @Override
     public String toString() {
-        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: "+getNumberOfBoats();
+        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: " + getNumberOfBoats();
     }
 
 

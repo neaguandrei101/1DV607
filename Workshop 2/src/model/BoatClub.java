@@ -13,7 +13,9 @@ public class BoatClub {
 	@JsonProperty("membersArray")
 	private List<Member> membersArray = new ArrayList<>();
 
-	BoatClub() {} // this is bad but it is required by RegistryHandler
+    // this is bad but it is required by RegistryHandler
+    // can't remove
+	BoatClub() {}
 
 	public void addMember(Member member) {
 		this.membersArray.add(member);
