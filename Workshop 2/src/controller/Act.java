@@ -3,117 +3,118 @@ package controller;
 import model.Boat;
 import model.BoatClub;
 import model.Member;
-import model.ReadJSON;
+import model.RegistryHandler;
 import view.UI;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Act {
     private BoatClub boatClub = null;
-    private UI ui = new UI();
+    private UI ui;
 
     private Scanner sc = new Scanner(System.in);
 
-    public Act() {
+    public Act(UI ui) {
+        this.ui = ui;
     }
 
-    public void readChoice() throws Exception{
+    public void readChoice() throws Exception {
         this.ui.console();
         int num = sc.nextInt();
-        boolean bool = true;
-        while (bool) {
-            switch (num) {
-                case 1:
-                    createUser();
-                    break;
-                case 2:
-                    deleteUser();
-                    break;
-                case 3:
-                    listtAllMembers();
-                    break;
-                case 4:
-                    changeMemberInfo();
-                    break;
-                case 5:
-                    lookAtMemberInfo();
-                    break;
-                case 6:
-                    printReadFromRegistryMessage();
-                    break;
-                case 7:
-                    Files.write(Paths.get("LocalBoatClubRegistry.json"), boatClub.getJsonFileMembers().toJSONString().getBytes());
-                    System.out.println("Exiting...");
-                    bool = false;
-                    break;
-                case 8:
-                    printChangeBoatInfo();
-                    break;
-                case 9:
-                    printDeleteBoat();
-                    break;
-            }
+        switch (num) {
+            case 1:
+                createUser();
+                readChoice();
+                break;
+            case 2:
+                deleteUser();
+                readChoice();
+                break;
+            case 3:
+                listAllMembers();
+                readChoice();
+                break;
+            case 4:
+                changeMemberInfo();
+                readChoice();
+                break;
+            case 5:
+                lookAtMemberInfo();
+                readChoice();
+                break;
+            case 6:
+                printReadFromRegistryMessage();
+                readChoice();
+                break;
+            case 7:
+                RegistryHandler.saveBoatClubToJsonFile("LocalBoatClubRegistry.json", this.boatClub);
+                System.out.println("Exiting...");
+                break;
+            case 8:
+                printChangeBoatInfo();
+                readChoice();
+                break;
+            case 9:
+                printDeleteBoat();
+                readChoice();
+                break;
+            case 10:
+                printAddBoat();
+                readChoice();
+                break;
+            default:
+                System.out.println("Wrong input, try again");
+                readChoice();
+                break;
         }
     }
 
-	private void createUser() throws Exception {
-		boolean created = false;
-		boolean safe = false;
-		Member newMember = new Member();
-		Boat firstBoat = new Boat();
 
+
+    private void createUser() {
         System.out.print("Name: ");
-        sc.nextLine();
-        newMember.setName(sc.nextLine());
+        String name = sc.next();
         System.out.println("Ex Personal Number '199905239898'");
         System.out.print("Personal Number: ");
         String personalNumber = sc.next();
-        newMember.setPersonalNumber(personalNumber);
-        newMember.setMemberId(boatClub.generateId());
+        int id = this.boatClub.generateId();
 
         System.out.println("You have to add your first boat, enter the boat details: ");
         this.ui.printBoatTypes();
         System.out.println("Type boat type: ");
+        String boatType = null;
         switch (sc.nextInt()) {
             case 1:
-                firstBoat.setBoatType("Sailboat");
+                boatType = "Sailboat";
                 break;
             case 2:
-                firstBoat.setBoatType("Motorsailer");
+                boatType = "Motorsailer";
                 break;
             case 3:
-                firstBoat.setBoatType("Kayak/Canoe");
+                boatType = "Kayak/Canoe";
                 break;
             case 4:
-                firstBoat.setBoatType("Other");
+                boatType = "Other";
                 break;
         }
-
         System.out.println("Boat length in meters: ");
-        int num = sc.nextInt();
-        firstBoat.setLength(num);
-        newMember.addBoat(firstBoat);
-        safe = true;
-
-        if (safe) {
-            this.boatClub.addMember(newMember);
-        } else {
-            throw new RuntimeException("Something went wrong in the user creation");
-        }
+        int boatLength = sc.nextInt();
+        Boat boat = new Boat(boatType, boatLength);
+        Member member = new Member(name, personalNumber, id, boat);
+        this.boatClub.addMember(member);
         System.out.println("\nNew member has been added!");
         System.out.println("========================================");
-        System.out.println(newMember.toString());
+        System.out.println(member.toString());
         System.out.println("========================================\n\n");
     }
 
     private void deleteUser() {
-        System.out.println("Type personal number: ");
-        this.boatClub.removeMemberByPersonalNumber(sc.next());
+        System.out.println("Type member id: ");
+        this.boatClub.removeMember(sc.nextInt());
     }
 
-    private void listtAllMembers() {
+    private void listAllMembers() {
         this.ui.printListTypes();
         System.out.println("Type list type: ");
         switch (sc.nextInt()) {
@@ -127,15 +128,18 @@ public class Act {
     }
 
     private void printReadFromRegistryMessage() {
-        System.out.println("Type absolute path of the registry you want to read from: ");
-        sc.nextLine();
-        this.boatClub = ReadJSON.getBoatClubFromJsonFile(sc.nextLine());
+        System.out.println("Automatically read from LocalBoatClubRegistry.json, path relative: ");
+        try {
+            this.boatClub = RegistryHandler.getBoatClubFromJsonFile("LocalBoatClubRegistry.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void lookAtMemberInfo() {
-        System.out.println("Enter the member's personal number : ");
-        String personalNumber = sc.next();
-        System.out.println(this.boatClub.memberInfoByPN(personalNumber));
+        System.out.println("Type the id of the member you want to look at: ");
+        int id = sc.nextInt();
+        System.out.println(this.boatClub.getMemberInfo(id));
     }
 
     private void changeMemberInfo() {
@@ -144,55 +148,79 @@ public class Act {
 
         switch (sc.nextInt()) {
             case 1:
-                System.out.println("Enter the members personal number");
-                String pn = sc.next();
+                System.out.println("Enter the members id: ");
+                int id = sc.nextInt();
                 System.out.println("New name :");
-                this.boatClub.changeMemberName(pn, sc.next());
+                this.boatClub.changeMemberName(id, sc.next());
                 break;
             case 2:
-                System.out.println("Enter the members personal number");
-                String pn1 = sc.next();
+                System.out.println("Enter the members id: ");
+                int id2 = sc.nextInt();
                 System.out.println("New personal number :");
-                this.boatClub.changeMemberPersonalNumber(pn1, sc.next());
+                this.boatClub.changeMemberPersonalNumber(id2, sc.next());
                 break;
         }
     }
 
     private void printDeleteBoat() {
-        System.out.println("Type personal number of the member you want to delete the boat from: ");
-        String personalNumber = sc.next();
+        System.out.println("Type the id of the member you want to delete the boat from: ");
+        int id = sc.nextInt();
         System.out.println("Type the boat pos: ");
-        int pos = sc.nextInt();
-        this.boatClub.removeBoatFromMember(personalNumber, pos);
+        int position = sc.nextInt();
+        this.boatClub.removeBoatFromMember(id, position);
+    }
+
+    private void printAddBoat() {
+        System.out.println("Type the id of the member you want to add the boat to: ");
+        int id = sc.nextInt();
+        System.out.println("You have to enter the boat details: ");
+        this.ui.printBoatTypes();
+        System.out.println("Type boat type: ");
+        String boatType = null;
+        switch (sc.nextInt()) {
+            case 1:
+                boatType = "Sailboat";
+                break;
+            case 2:
+                boatType = "Motorsailer";
+                break;
+            case 3:
+                boatType = "Kayak/Canoe";
+                break;
+            case 4:
+                boatType = "Other";
+                break;
+        }
+        System.out.println("Boat length in meters: ");
+        int boatLength = sc.nextInt();
+        Boat boat = new Boat(boatType, boatLength);
+        this.boatClub.addBoatToMember(id, boat);
     }
 
     private void printChangeBoatInfo() {
-        System.out.println("Type personal number of the member you want to delete the boat from: ");
-        String personalNumber = sc.next();
-        System.out.println("Type the boat pos: ");
+        System.out.println("Type the id of the member you want to change the information: ");
+        int id = sc.nextInt();
+        System.out.println("Type the boat position: ");
         int pos = sc.nextInt();
         String newBoatType = null;
         System.out.println("Type new boat type: ");
         this.ui.printBoatTypes();
         switch (sc.nextInt()) {
             case 1:
-                newBoatType="Sailboat";
+                newBoatType = "Sailboat";
                 break;
             case 2:
-                newBoatType="Motorsailer";
+                newBoatType = "Motorsailer";
                 break;
             case 3:
-                newBoatType="Kayak/Canoe";
+                newBoatType = "Kayak/Canoe";
                 break;
             case 4:
-                newBoatType="Other";
+                newBoatType = "Other";
                 break;
         }
         System.out.println("Type new boat length: ");
         int newLength = sc.nextInt();
-
-        this.boatClub.changeBoatInfoFromMember(personalNumber,pos,newLength,newBoatType);
+        this.boatClub.changeBoatInfoFromMember(id, pos, newLength, newBoatType);
     }
-
-
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.json.simple.JSONArray;
@@ -12,98 +13,77 @@ public class BoatClub {
 	@JsonProperty("membersArray")
 	private List<Member> membersArray = new ArrayList<>();
 
-	BoatClub() {
-	}
+    // this is bad but it is required by RegistryHandler
+    // can't remove
+	BoatClub() {}
 
 	public void addMember(Member member) {
 		this.membersArray.add(member);
 	}
 
-	public void removeMemberByPersonalNumber(String pn) {
-		boolean found = false;
-		for (int i = 0; i < membersArray.size(); i++) {
-			if (membersArray.get(i).getPersonalNumber().equals(pn))
-				membersArray.remove(membersArray.get(i));
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
+    public void removeMember(int id) throws RuntimeException {
+        boolean found = this.membersArray.removeIf(member -> member.getMemberId() == id);
+        if (!found)
+            throw new RuntimeException("Member Not Found!");
+    }
+
+	public void removeBoatFromMember(int id, int boatPos) {
+        Optional<Member> memberOptional= this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findAny();
+        memberOptional.ifPresent(member -> member.removeBoat(boatPos));
+        memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 
-	public void removeBoatFromMember(String pn, int boatPos) {
-		boolean found = false;
-		for (Member member : membersArray) {
-			if (member.getPersonalNumber().equals(pn))
-				member.removeBoat(boatPos);
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
+	public void addBoatToMember(int id, Boat boat) {
+        Optional<Member> memberOptional = this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findFirst();
+        memberOptional.ifPresent(member -> member.addBoat(boat));
+        memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
+    }
+
+	public void changeBoatInfoFromMember(int id, int boatPos, int length, String boatType) {
+        Optional<Member> memberOptional= this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findAny();
+        memberOptional.ifPresent(member -> member.changeBoatInfo(boatPos, length, boatType));
+        memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 
-	public void changeBoatInfoFromMember(String pn, int boatPos, int length, String boatType) {
-		boolean found = false;
-		for (Member member : membersArray) {
-			if (member.getPersonalNumber().equals(pn))
-				member.changeBoatInfo(boatPos, length, boatType);
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
+	public String getMemberInfo(int id) {
+	    Optional<Member> memberOptional = this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findAny();
+	    Member member = memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
+	    return member.toString();
 	}
 
-	public String memberInfoByPN(String pn) {
-		boolean found = false;
-		String info = null;
-		for (Member member : membersArray) {
-			if (member.getPersonalNumber().equals(pn))
-				info = member.toString();
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
-		return info;
-	}
-
-	public void changeMemberName(String personalNumber, String newName) {
-		boolean found = false;
-		for (Member member : membersArray) {
-			if (member.getPersonalNumber().equals(personalNumber))
-				try {
-					member.setName(newName);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
+	public void changeMemberName(int id, String newName) {
+        Optional<Member> memberOptional= this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findAny();
+        memberOptional.ifPresent(member -> member.setName(newName));
+        memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 	
-	public void changeMemberPersonalNumber(String personalNumber, String newPersonalNumber) {
-		boolean found = false;
-		for (Member member : membersArray) {
-			if (member.getPersonalNumber().equals(personalNumber))
-				try {
-					member.setPersonalNumber(newPersonalNumber);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			found = true;
-		}
-		if (!found)
-			throw new RuntimeException("Not Found!");
+	public void changeMemberPersonalNumber(int id, String newPersonalNumber) {
+        Optional<Member> memberOptional= this.membersArray.stream()
+                .filter(member -> member.getMemberId() == id)
+                .findAny();
+        memberOptional.ifPresent(member -> member.setPersonalNumber(newPersonalNumber));
+        memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 
 	public String compactListString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
-			stringBuilder.append(member.getName() + " ,");
+			stringBuilder.append(member.getName()).append(" ,");
 			stringBuilder.append("id: ");
-			stringBuilder.append(member.getMemberId() + " ,");
+			stringBuilder.append(member.getMemberId()).append(" ,");
 			stringBuilder.append("boats: ");
-			stringBuilder.append(member.getNumberOfBoats() + "\n");
+			stringBuilder.append(member.getNumberOfBoats()).append("\n");
 		}
 		return stringBuilder.toString();
 	}
@@ -112,18 +92,33 @@ public class BoatClub {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
-			stringBuilder.append(member.getName() + " ,");
+			stringBuilder.append(member.getName()).append(" ,");
 			stringBuilder.append("Personal number: ");
-			stringBuilder.append(member.getPersonalNumber() + " ,");
+			stringBuilder.append(member.getPersonalNumber()).append(" ,");
 			stringBuilder.append("id: ");
-			stringBuilder.append(member.getMemberId() + "\n");
+			stringBuilder.append(member.getMemberId()).append("\n");
 			stringBuilder.append("boat list: \n");
-			stringBuilder.append(member.printBoatArray());
+			stringBuilder.append(member.boatArrayToString());
 		}
 		return stringBuilder.toString();
 	}
 
-	public JSONObject getJsonFileMembers() {
+    public int generateId() {
+        Random rand = new Random();
+        boolean idAlreadyExists;
+        int randomId = rand.nextInt(999) + 1;
+
+        idAlreadyExists = this.membersArray.stream()
+                .anyMatch(member -> member.getMemberId() == randomId);
+        if(!idAlreadyExists) {
+            return randomId;
+        } else {
+            generateId();
+        }
+        return 0;
+    }
+
+	byte[] getJsonFileMembers() {
 		JSONArray jsonMemberArray = new JSONArray();
 		for (Member member : membersArray) {
 			JSONObject jsonMember = new JSONObject();
@@ -143,7 +138,7 @@ public class BoatClub {
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("membersArray", jsonMemberArray);
-		return jsonObject;
+		return jsonObject.toJSONString().getBytes();
 	}
 
     public int generateId() {

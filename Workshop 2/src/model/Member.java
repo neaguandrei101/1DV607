@@ -5,33 +5,42 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class Member {
     private String name;
     private String personalNumber;
     private int memberId;
-    
-	@JsonProperty("boatArray")
+
+    @JsonProperty("boatArray")
     List<Boat> boatArray = new ArrayList<>();
 
-    public Member() {}
+    // can't remove
+    // this is bad but it is required by RegistryHandler
+    public Member() {
+    }
 
-     String getName() {
+    public Member(String name, String personalNumber, int memberId, Boat boat) {
+        this.name = name;
+        this.personalNumber = personalNumber;
+        this.memberId = memberId;
+        boatArray.add(boat);
+    }
+
+    String getName() {
         return name;
     }
 
-    public void setName(String name) throws Exception {
+    public void setName(String name) {
         if (name.length() >= 3)
             this.name = name;
         else
             throw new RuntimeException("Name length to short!");
     }
 
-     String getPersonalNumber() {
+    String getPersonalNumber() {
         return personalNumber;
     }
 
-    public void setPersonalNumber(String personalNumber) throws Exception {
+    public void setPersonalNumber(String personalNumber) throws RuntimeException {
         boolean valid = true;
         if (personalNumber.length() == 12) {
             for (int i = 0; i < personalNumber.length(); i++) {
@@ -42,9 +51,8 @@ public class Member {
             }
             if (valid)
                 this.personalNumber = personalNumber;
-            	
         } else
-            throw new IndexOutOfBoundsException("Invalid Input!");
+            throw new RuntimeException("Invalid Input Personal Number!");
     }
 
     int getMemberId() {
@@ -55,20 +63,15 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public void addBoat(String type, int length) {
-        Boat boat = new Boat(type, length);
-        this.boatArray.add(boat);
-    }
-    
     public void addBoat(Boat boat) {
         this.boatArray.add(boat);
     }
 
     void removeBoat(int id) {
-        try{
-            boatArray.remove(id);}
-        catch (IndexOutOfBoundsException ex){
-            throw new RuntimeException("Not Found!");
+        try {
+            boatArray.remove(id);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new RuntimeException("Boat Not Found!");
         }
     }
 
@@ -80,17 +83,17 @@ public class Member {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
-    String printBoatArray() {
+    String boatArrayToString() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
-            sb.append(boat.toString() + ", pos:" + (this.boatArray.size()-1) + "\n");
+            sb.append(boat.toString()).append(", pos:").append(this.boatArray.indexOf(boat)).append("\n");
         }
         return sb.toString();
     }
 
     @Override
     public String toString() {
-        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: "+getNumberOfBoats();
+        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: " + getNumberOfBoats();
     }
 
 

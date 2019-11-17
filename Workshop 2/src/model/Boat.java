@@ -1,19 +1,17 @@
 package model;
 
 public class Boat {
-
-	private int length;
+    private int length;
     private String boatType;
 
-    Boat(String boatType, int length) {
+    public Boat() {} // this is bad but it is required by RegistryHandler
+
+    public Boat(String boatType, int length) {
         this.boatType = boatType;
         this.length = length;
     }
-    public Boat(){
 
-    }
-
-     int getLength() {
+    int getLength() {
         return length;
     }
 
@@ -21,7 +19,7 @@ public class Boat {
         this.length = length;
     }
 
-     String getType() {
+    String getType() {
         return boatType;
     }
 
@@ -29,9 +27,9 @@ public class Boat {
         this.boatType = boatType;
     }
 
-     void setBoatInfo(int changeLength, String changeBoatType) {
-    	if(getType()== null)
-    		throw new RuntimeException("There is no Boat!");
+    void setBoatInfo(int changeLength, String changeBoatType) {
+        if(getType()== null)
+            throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
         setBoatType(changeBoatType);
     }
@@ -40,5 +38,5 @@ public class Boat {
     public String toString() {
         return "Type: " + " " + this.boatType + " , " + "length: " + this.length;
     }
-    
+
 }
