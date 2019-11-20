@@ -141,18 +141,4 @@ public class BoatClub {
 		return jsonObject.toJSONString().getBytes();
 	}
 
-    public int generateId() {
-        Random rand = new Random();
-        boolean idAlreadyExists = false;
-        int randomId = rand.nextInt(999) + 1;
-
-        idAlreadyExists = this.membersArray.stream()
-                .anyMatch(member -> member.getMemberId() == randomId);
-        if(!idAlreadyExists) {
-            return randomId;
-        } else {
-            generateId();
-        }
-        return 0;
-    }
 }

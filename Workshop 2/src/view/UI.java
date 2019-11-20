@@ -1,8 +1,19 @@
 package view;
 
+import java.util.Scanner;
+
 public class UI {
+    private Scanner sc = new Scanner(System.in);
 
     public UI() {
+    }
+
+    public int scannerInt(){
+        return this.sc.nextInt();
+    }
+
+    public String scannerString(){
+        return this.sc.next();
     }
 
     public void console() {

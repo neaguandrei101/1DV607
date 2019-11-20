@@ -17,3 +17,5 @@ Created addBoatToMember() since it was missing.
 Changed method name from printBoatArray() to boatArrayToString() since this is what it does and it was a naming inconsistency.
 Changed all the functions in BoatClub(big fix) to search by id instead of personalNumber and made them with functional programming,
 this improved readability greatly and shortened the number of lines.
+Moved Scanner to the view class.
+Removed duplicated code and used new java 12 switch statement in controller. 
