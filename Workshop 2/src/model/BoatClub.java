@@ -43,7 +43,7 @@ public class BoatClub {
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
     }
 
-	public void changeBoatInfoFromMember(int id, int boatPos, int length, String boatType) {
+	public void changeBoatInfoFromMember(int id, int boatPos, int length, int boatType) {
         Optional<Member> memberOptional= this.membersArray.stream()
                 .filter(member -> member.getMemberId() == id)
                 .findAny();

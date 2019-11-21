@@ -68,8 +68,6 @@ public class Act {
         }
     }
 
-
-
     private void createUser() {
         System.out.print("Name: ");
         String name = this.ui.scannerString();
@@ -81,7 +79,7 @@ public class Act {
         System.out.println("You have to add your first boat, enter the boat details: ");
         this.ui.printBoatTypes();
         System.out.println("Type boat type: ");
-        String boatType = this.newBoatType(this.ui.scannerInt());
+        int boatType = this.ui.scannerInt();
 
         System.out.println("Boat length in meters: ");
         int boatLength = this.ui.scannerInt();
@@ -161,7 +159,7 @@ public class Act {
         System.out.println("You have to enter the boat details: ");
         this.ui.printBoatTypes();
         System.out.println("Type boat type: ");
-        String boatType = this.newBoatType(this.ui.scannerInt());
+        int boatType = this.ui.scannerInt();
         System.out.println("Boat length in meters: ");
         int boatLength = this.ui.scannerInt();
         Boat boat = new Boat(boatType, boatLength);
@@ -175,18 +173,10 @@ public class Act {
         int pos = this.ui.scannerInt();
         System.out.println("Type new boat type: ");
         this.ui.printBoatTypes();
-        String boatType = this.newBoatType(this.ui.scannerInt());
+        int boatType = this.ui.scannerInt();
         System.out.println("Type new boat length: ");
         int newLength = this.ui.scannerInt();
         this.boatClub.changeBoatInfoFromMember(id, pos, newLength, boatType);
     }
 
-    private String newBoatType(int value){  //fancy java 12 preview features
-        return switch (value) {    //have to learn it somehow
-            case 1 : break "Sailboat";
-            case 2 : break "Motorsailer";
-            case 3 : break"Kayak/Canoe";
-            default: break "Other";
-        };
-    }
 }

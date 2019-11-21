@@ -6,8 +6,8 @@ public class Boat {
 
     public Boat() {} // this is bad but it is required by RegistryHandler
 
-    public Boat(String boatType, int length) {
-        this.boatType = boatType;
+    public Boat(int boatType, int length) {
+        this.boatType = this.newBoatType(boatType);
         this.length = length;
     }
 
@@ -27,16 +27,25 @@ public class Boat {
         this.boatType = boatType;
     }
 
-    void setBoatInfo(int changeLength, String changeBoatType) {
+    void setBoatInfo(int changeLength, int changeBoatType) {
         if(getType()== null)
             throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
-        setBoatType(changeBoatType);
+        setBoatType(this.newBoatType(changeBoatType));
     }
 
     @Override
     public String toString() {
         return "Type: " + " " + this.boatType + " , " + "length: " + this.length;
+    }
+
+    private String newBoatType(int value){  //fancy java 12 preview features
+        return switch (value) {    //have to learn it somehow
+            case 1 : break "Sailboat";
+            case 2 : break "Motorsailer";
+            case 3 : break"Kayak/Canoe";
+            default: break "Other";
+        };
     }
 
 }
