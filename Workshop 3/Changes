@@ -1,0 +1,6 @@
+Comment: Deck can now be removed from the INewGameStrategy realizations
+  removed Deck from the constructors
+Comment: Hidden dependency: not fixed?
+  Fixed the hidden dependency, updated IView and PlayGame
+Comment: Class diagram: not ok, the observer part does not correspond to the implementation
+  Fixed and updated the class diagram, it is correct now.

@@ -8,7 +8,7 @@ import BlackJack.model.Card;
 class InternationalNewGameStrategy implements INewGameStrategy {
   private Dealer dealer;
 
-  public boolean NewGame(Deck a_deck, Dealer a_dealer, Player a_player) {
+  public boolean NewGame(Dealer a_dealer, Player a_player) {
     dealer = a_dealer;
     Card c;
 

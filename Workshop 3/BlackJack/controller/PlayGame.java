@@ -10,6 +10,8 @@ public class PlayGame implements Observer_IO {
   private IView observerView;
 
 
+
+
   public boolean Play(Game a_game, IView a_view) {
     observerGame = a_game;
     observerView = a_view;
@@ -18,15 +20,15 @@ public class PlayGame implements Observer_IO {
     a_game.IsGameOver();
 
     int input = a_view.GetInput();
-    if (input == 'p') {
+    if (input == a_view.newGameEvent()) {
       a_game.NewGame();
-    } else if (input == 'h') {
+    } else if (input == a_view.hitEvent()) {
       a_game.Hit();
-    } else if (input == 's') {
+    } else if (input == a_view.standEvent()) {
       a_game.Stand();
     }
 
-    return input != 'q';
+    return input != a_view.quitEvent();
   }
 
   @Override

@@ -11,6 +11,21 @@ public class SwedishView implements IView
             System.out.println("----------------------");
             System.out.println("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
         }
+        public int newGameEvent() {
+            return 'p';
+        }
+
+        public int hitEvent() {
+            return 'h';
+        }
+
+        public int standEvent() {
+            return 's';
+        }
+
+        public int quitEvent() {
+            return 'q';
+        }
         
         public int GetInput()
         {
