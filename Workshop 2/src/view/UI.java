@@ -8,11 +8,11 @@ public class UI {
     public UI() {
     }
 
-    public int scannerInt(){
+    public int scannerInt() {
         return this.sc.nextInt();
     }
 
-    public String scannerString(){
+    public String scannerString() {
         return this.sc.next();
     }
 
@@ -40,13 +40,80 @@ public class UI {
         System.out.println("(4) Other");
     }
 
-    public void printListTypes() {
-        System.out.println("(1) Compact List");
-        System.out.println("(2) Verbose List");
-    }
-
     public void printChangesToMember() {
         System.out.println("(1) Change name : ");
         System.out.println("(2) Change personal number : ");
+        System.out.println("Your choice : ");
     }
+
+    //this is for the addMember
+    public void printNameMessage() {
+        System.out.print("Name: ");
+    }
+
+    public void printPersonalNumberMessage() {
+        System.out.println("Ex Personal Number '199905239898'");
+        System.out.println("Personal Number: ");
+    }
+
+    public void printBoatTypesMessage() {
+        System.out.println("You have to enter the boat details: ");
+        this.printBoatTypes();
+        System.out.println("Type boat type: ");
+    }
+
+    public void printBoatLengthMessage() {
+        System.out.println("Boat length in meters: ");
+    }
+
+    public void printMemberCreatedMessage() {
+        System.out.println("New member has been added!");
+    }
+
+    //this is for deleteUser()
+    public void printIdMessage() {
+        System.out.println("Type member id: ");
+    }
+
+    //this is for listAllMembers()
+    public void printListTypesMessage() {
+        System.out.println("(1) Compact List");
+        System.out.println("(2) Verbose List");
+        System.out.println("Type list type: ");
+    }
+
+    //this is for registry in Act
+    public void printReadFromRegistryMessage() {
+        System.out.println("Automatically read from LocalBoatClubRegistry.json, path relative: ");
+    }
+
+    //this is for lookAtMemberInfo()
+    public void printLookAtMemberInfoMessage() {
+        System.out.println("Type the id of the member you want to look at: ");
+    }
+
+    //this is for deleteBoat()
+    public void printDeleteBoatMessage() {
+        System.out.println("Type the id of the member you want to delete the boat from: ");
+    }
+
+    public void printBoatPosMessage() {
+        System.out.println("Type the boat position: ");
+    }
+
+    // this is for addBoat()
+    public void printAddBoatMessage() {
+        System.out.println("Type the id of the member you want to add the boat to: ");
+    }
+
+    //this is for printChangeBoatInfo()
+    public void printChangeBoatInfoMessage() {
+        System.out.println("Type the id of the member you want to change the information: ");
+    }
+
+    //wrong input message
+    public void printWrongInputMessage() {
+        System.out.println("Wrong input, try again");
+    }
+
 }

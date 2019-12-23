@@ -15,10 +15,16 @@ public class BoatClub {
 
     // this is bad but it is required by RegistryHandler
     // can't remove
-	BoatClub() {}
+	public BoatClub() {}
 
 	public void addMember(Member member) {
 		this.membersArray.add(member);
+	}
+
+    public void addMember(String name, String personalNumber, int boatType, int boatLength) {
+        Boat boat = new Boat(boatType, boatLength);
+        Member member = new Member(name, personalNumber, this.generateId(), boat);
+        this.membersArray.add(member);
 	}
 
     public void removeMember(int id) throws RuntimeException {
@@ -106,15 +112,19 @@ public class BoatClub {
 
     public int generateId() {
         Random rand = new Random();
-        boolean idAlreadyExists;
-        int randomId = rand.nextInt(999) + 1;
-
-        idAlreadyExists = this.membersArray.stream()
-                .anyMatch(member -> member.getMemberId() == randomId);
-        if(!idAlreadyExists) {
-            return randomId;
+        if (this.membersArray.isEmpty()) {
+           return  rand.nextInt(999) + 1;
         } else {
-            generateId();
+            boolean idAlreadyExists;
+            int randomId = rand.nextInt(999) + 1;
+
+            idAlreadyExists = this.membersArray.stream()
+                    .anyMatch(member -> member.getMemberId() == randomId);
+            if(!idAlreadyExists) {
+                return randomId;
+            } else {
+                generateId();
+            }
         }
         return 0;
     }

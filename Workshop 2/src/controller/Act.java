@@ -1,17 +1,15 @@
 package controller;
 
-import model.Boat;
-import model.BoatClub;
-import model.Member;
-import model.RegistryHandler;
+import model.*;
 import view.UI;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Act {
-    private BoatClub boatClub = null;
+    private BoatClub boatClub = new BoatClub();
     private UI ui;
+    Scanner scanner = new Scanner(System.in);
 
     public Act(UI ui) {
         this.ui = ui;
@@ -42,65 +40,53 @@ public class Act {
                 readChoice();
                 break;
             case 6:
-                printReadFromRegistryMessage();
+                readFromRegistry();
                 readChoice();
                 break;
             case 7:
                 RegistryHandler.saveBoatClubToJsonFile("LocalBoatClubRegistry.json", this.boatClub);
-                System.out.println("Exiting...");
                 break;
             case 8:
-                printChangeBoatInfo();
+                changeBoatInfo();
                 readChoice();
                 break;
             case 9:
-                printDeleteBoat();
+                deleteBoat();
                 readChoice();
                 break;
             case 10:
-                printAddBoat();
+                addBoat();
                 readChoice();
                 break;
             default:
-                System.out.println("Wrong input, try again");
+                this.ui.printWrongInputMessage();
                 readChoice();
                 break;
         }
     }
 
     private void createUser() {
-        System.out.print("Name: ");
-        String name = this.ui.scannerString();
-        System.out.println("Ex Personal Number '199905239898'");
-        System.out.print("Personal Number: ");
-        String personalNumber = this.ui.scannerString();
-        int id = this.boatClub.generateId();
-
-        System.out.println("You have to add your first boat, enter the boat details: ");
-        this.ui.printBoatTypes();
-        System.out.println("Type boat type: ");
-        int boatType = this.ui.scannerInt();
-
-        System.out.println("Boat length in meters: ");
-        int boatLength = this.ui.scannerInt();
-        Boat boat = new Boat(boatType, boatLength);
-        Member member = new Member(name, personalNumber, id, boat);
-        this.boatClub.addMember(member);
-        System.out.println("\nNew member has been added!");
-        System.out.println("========================================");
-        System.out.println(member.toString());
-        System.out.println("========================================\n\n");
+        this.ui.printNameMessage();
+        String name = this.scanner.next();
+        this.ui.printPersonalNumberMessage();
+        String personalNumber = this.scanner.next();
+        this.ui.printBoatTypesMessage();
+        int boatType = this.scanner.nextInt();
+        this.ui.printBoatLengthMessage();
+        int boatLength = this.scanner.nextInt();
+        this.boatClub.addMember(name, personalNumber, boatType, boatLength);
+        this.ui.printMemberCreatedMessage();
     }
 
     private void deleteUser() {
-        System.out.println("Type member id: ");
-        this.boatClub.removeMember(this.ui.scannerInt());
+        this.ui.printIdMessage();
+        this.boatClub.removeMember(this.scanner.nextInt());
     }
 
+    //TODO deal with string formatting
     private void listAllMembers() {
-        this.ui.printListTypes();
-        System.out.println("Type list type: ");
-        switch (this.ui.scannerInt()) {
+        this.ui.printListTypesMessage();
+        switch (this.scanner.nextInt()) {
             case 1:
                 System.out.println(this.boatClub.compactListString());
                 break;
@@ -110,8 +96,8 @@ public class Act {
         }
     }
 
-    private void printReadFromRegistryMessage() {
-        System.out.println("Automatically read from LocalBoatClubRegistry.json, path relative: ");
+    private void readFromRegistry() {
+        this.ui.printReadFromRegistryMessage();
         try {
             this.boatClub = RegistryHandler.getBoatClubFromJsonFile("LocalBoatClubRegistry.json");
         } catch (IOException e) {
@@ -119,62 +105,58 @@ public class Act {
         }
     }
 
+    //TODO formatted strings
     private void lookAtMemberInfo() {
-        System.out.println("Type the id of the member you want to look at: ");
-        int id = this.ui.scannerInt();
+        this.ui.printLookAtMemberInfoMessage();
+        int id = this.scanner.nextInt();
         System.out.println(this.boatClub.getMemberInfo(id));
     }
 
     private void changeMemberInfo() {
         this.ui.printChangesToMember();
-        System.out.println("Your choice : ");
-
-        switch (this.ui.scannerInt()) {
+        switch (this.scanner.nextInt()) {
             case 1:
-                System.out.println("Enter the members id: ");
+                this.ui.printIdMessage();
                 int id = this.ui.scannerInt();
-                System.out.println("New name :");
-                this.boatClub.changeMemberName(id, this.ui.scannerString());
+                this.ui.printNameMessage();
+                this.boatClub.changeMemberName(id, this.scanner.next());
                 break;
             case 2:
-                System.out.println("Enter the members id: ");
+                this.ui.printIdMessage();
                 int id2 = this.ui.scannerInt();
-                System.out.println("New personal number :");
+                this.ui.printPersonalNumberMessage();
                 this.boatClub.changeMemberPersonalNumber(id2, this.ui.scannerString());
                 break;
         }
     }
 
-    private void printDeleteBoat() {
-        System.out.println("Type the id of the member you want to delete the boat from: ");
-        int id = this.ui.scannerInt();
-        System.out.println("Type the boat pos: ");
-        int position = this.ui.scannerInt();
+    private void deleteBoat() {
+        this.ui.printDeleteBoatMessage();
+        int id = this.scanner.nextInt();
+        this.ui.printBoatPosMessage();
+        int position = this.scanner.nextInt();
         this.boatClub.removeBoatFromMember(id, position);
     }
 
-    private void printAddBoat() {
-        System.out.println("Type the id of the member you want to add the boat to: ");
+    private void addBoat() {
+        this.ui.printAddBoatMessage();
         int id = this.ui.scannerInt();
-        System.out.println("You have to enter the boat details: ");
-        this.ui.printBoatTypes();
-        System.out.println("Type boat type: ");
+        this.ui.printBoatTypesMessage();
         int boatType = this.ui.scannerInt();
-        System.out.println("Boat length in meters: ");
+        this.ui.printBoatLengthMessage();
         int boatLength = this.ui.scannerInt();
         Boat boat = new Boat(boatType, boatLength);
         this.boatClub.addBoatToMember(id, boat);
     }
 
-    private void printChangeBoatInfo() {
-        System.out.println("Type the id of the member you want to change the information: ");
+    private void changeBoatInfo() {
+        this.ui.printChangeBoatInfoMessage();
         int id = this.ui.scannerInt();
-        System.out.println("Type the boat position: ");
+        this.ui.printBoatPosMessage();
         int pos = this.ui.scannerInt();
-        System.out.println("Type new boat type: ");
-        this.ui.printBoatTypes();
+        this.ui.printBoatTypesMessage();
         int boatType = this.ui.scannerInt();
-        System.out.println("Type new boat length: ");
+        this.ui.printBoatLengthMessage();
         int newLength = this.ui.scannerInt();
         this.boatClub.changeBoatInfoFromMember(id, pos, newLength, boatType);
     }
