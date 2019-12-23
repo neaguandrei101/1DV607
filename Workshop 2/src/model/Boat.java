@@ -20,7 +20,7 @@ public class Boat {
         this.length = length;
     }
 
-    String getType() {
+    String getBoatType() {
         return boatType;
     }
 
@@ -29,7 +29,7 @@ public class Boat {
     }
 
     void setBoatInfo(int changeLength, int changeBoatType) {
-        if (getType() == null)
+        if (getBoatType() == null)
             throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
         setBoatType(this.newBoatType(changeBoatType));
@@ -41,7 +41,7 @@ public class Boat {
         return "Type: " + " " + this.boatType + " , " + "length: " + this.length;
     }
 
-    //TODO remove string formatting
+    //TODO remove string formatting later, replace with enums
     private String newBoatType(int value) {
         String type = "";
         switch (value) {

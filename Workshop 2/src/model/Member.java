@@ -25,7 +25,7 @@ public class Member {
         boatArray.add(boat);
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -36,7 +36,7 @@ public class Member {
             throw new RuntimeException("Name length to short!");
     }
 
-    String getPersonalNumber() {
+    public String getPersonalNumber() {
         return personalNumber;
     }
 
@@ -55,12 +55,8 @@ public class Member {
             throw new RuntimeException("Invalid Input Personal Number!");
     }
 
-    int getMemberId() {
+    public int getMemberId() {
         return this.memberId;
-    }
-
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
     }
 
     public void addBoat(Boat boat) {
@@ -75,7 +71,11 @@ public class Member {
         }
     }
 
-    int getNumberOfBoats() {
+    public Boat getBoatFromMember(int pos) {
+        return this.boatArray.get(pos);
+    }
+
+    public int getNumberOfBoats() {
         return boatArray.size();
     }
 
@@ -91,12 +91,5 @@ public class Member {
         }
         return sb.toString();
     }
-
-    //TODO remove string formatting
-    @Override
-    public String toString() {
-        return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: " + getNumberOfBoats();
-    }
-
 
 }

@@ -105,11 +105,11 @@ public class Act {
         }
     }
 
-    //TODO formatted strings
     private void lookAtMemberInfo() {
         this.ui.printLookAtMemberInfoMessage();
         int id = this.scanner.nextInt();
-        System.out.println(this.boatClub.getMemberInfo(id));
+        Member member = this.boatClub.getMemberFromClub(id);
+        this.ui.printMemberInfo(member);
     }
 
     private void changeMemberInfo() {

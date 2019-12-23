@@ -1,5 +1,7 @@
 package view;
 
+import model.Member;
+
 import java.util.Scanner;
 
 public class UI {
@@ -90,6 +92,10 @@ public class UI {
     //this is for lookAtMemberInfo()
     public void printLookAtMemberInfoMessage() {
         System.out.println("Type the id of the member you want to look at: ");
+    }
+
+    public void printMemberInfo(Member member) {
+        System.out.println("Name: " + member.getName() + "\nP. Number: " + member.getPersonalNumber() + "\nID: " + member.getMemberId() + "\nNumber of boats: " + member.getNumberOfBoats());
     }
 
     //this is for deleteBoat()
