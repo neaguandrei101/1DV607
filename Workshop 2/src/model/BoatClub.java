@@ -51,7 +51,8 @@ public class BoatClub {
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
 
-	public String getMemberInfo(int id) {
+    //TODO remove string formatting
+    public String getMemberInfo(int id) {
 	    Optional<Member> memberOptional = this.membersArray.stream()
                 .filter(member -> member.getMemberId() == id)
                 .findAny();
@@ -74,8 +75,8 @@ public class BoatClub {
         memberOptional.ifPresent(member -> member.setPersonalNumber(newPersonalNumber));
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
 	}
-
-	public String compactListString() {
+    //TODO remove string formatting
+    public String compactListString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {
 			stringBuilder.append("Name: ");
@@ -87,7 +88,7 @@ public class BoatClub {
 		}
 		return stringBuilder.toString();
 	}
-
+    //TODO remove string formatting
 	public String verboseListString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Member member : membersArray) {

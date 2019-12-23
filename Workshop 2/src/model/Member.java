@@ -83,6 +83,7 @@ public class Member {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
+    //TODO remove string formatting
     String boatArrayToString() {
         StringBuilder sb = new StringBuilder();
         for (Boat boat : this.boatArray) {
@@ -91,6 +92,7 @@ public class Member {
         return sb.toString();
     }
 
+    //TODO remove string formatting
     @Override
     public String toString() {
         return "Name: " + getName() + "\nP. Number: " + getPersonalNumber() + "\nID: " + getMemberId() + "\nNumber of boats: " + getNumberOfBoats();
