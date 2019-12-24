@@ -14,7 +14,7 @@ public class Member {
     List<Boat> boatArray = new ArrayList<>();
 
     // can't remove
-    // this is bad but it is required by RegistryHandler
+    // this is bad but it is required by Jackson library
     public Member() {
     }
 

@@ -2,10 +2,10 @@ package model;
 
 public class Boat {
     private int length;
-    private String boatType;
+    private BoatType boatType;
 
     public Boat() {
-    } // this is bad but it is required by RegistryHandler
+    } // this is bad but it is required by Jackson library
 
     public Boat(int boatType, int length) {
         this.boatType = this.newBoatType(boatType);
@@ -20,11 +20,11 @@ public class Boat {
         this.length = length;
     }
 
-    public String getBoatType() {
+    public BoatType getBoatType() {
         return boatType;
     }
 
-    public void setBoatType(String boatType) {
+    public void setBoatType(BoatType boatType) {
         this.boatType = boatType;
     }
 
@@ -36,19 +36,23 @@ public class Boat {
     }
 
     //TODO replace with ENUM
-    private String newBoatType(int value) {
-        String type = "";
+    private BoatType newBoatType(int value) {
+        BoatType type ;
         switch (value) {
             case 1:
-                type = "Sailboat";
+                type = BoatType.Sailboat;
             case 2:
-                type = "Motorsailer";
+                type = BoatType.Motorsailer;
             case 3:
-                type = "Kayak/Canoe";
+                type = BoatType.Kayak_Canoe;
             default:
-                type = "Other";
+                type = BoatType.Other;
         }
         return type;
+    }
+
+    public enum BoatType {
+        Sailboat, Motorsailer, Kayak_Canoe, Other
     }
 
 }
