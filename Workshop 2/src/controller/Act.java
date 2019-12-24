@@ -83,15 +83,14 @@ public class Act {
         this.boatClub.removeMember(this.scanner.nextInt());
     }
 
-    //TODO deal with string formatting
     private void listAllMembers() {
         this.ui.printListTypesMessage();
         switch (this.scanner.nextInt()) {
             case 1:
-                System.out.println(this.boatClub.compactListString());
+                this.ui.printCompactList(this.boatClub);
                 break;
             case 2:
-                System.out.println(this.boatClub.verboseListString());
+                this.ui.printVerboseList(this.boatClub);
                 break;
         }
     }

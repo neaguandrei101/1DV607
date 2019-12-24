@@ -40,6 +40,10 @@ public class Member {
         return personalNumber;
     }
 
+    public List<Boat> getBoatArray() {
+        return boatArray;
+    }
+
     public void setPersonalNumber(String personalNumber) throws RuntimeException {
         boolean valid = true;
         if (personalNumber.length() == 12) {
@@ -81,15 +85,6 @@ public class Member {
 
     void changeBoatInfo(int position, int length, int boatType) {
         boatArray.get(position).setBoatInfo(length, boatType);
-    }
-
-    //TODO remove string formatting
-    String boatArrayToString() {
-        StringBuilder sb = new StringBuilder();
-        for (Boat boat : this.boatArray) {
-            sb.append(boat.toString()).append(", pos:").append(this.boatArray.indexOf(boat)).append("\n");
-        }
-        return sb.toString();
     }
 
 }

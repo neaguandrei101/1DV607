@@ -12,7 +12,7 @@ public class Boat {
         this.length = length;
     }
 
-    int getLength() {
+    public int getLength() {
         return length;
     }
 
@@ -20,7 +20,7 @@ public class Boat {
         this.length = length;
     }
 
-    String getBoatType() {
+    public String getBoatType() {
         return boatType;
     }
 
@@ -33,12 +33,6 @@ public class Boat {
             throw new RuntimeException("There is no Boat!");
         setLength(changeLength);
         setBoatType(this.newBoatType(changeBoatType));
-    }
-
-    //TODO remove string formatting
-    @Override
-    public String toString() {
-        return "Type: " + " " + this.boatType + " , " + "length: " + this.length;
     }
 
     //TODO remove string formatting later, replace with enums

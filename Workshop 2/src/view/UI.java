@@ -1,5 +1,7 @@
 package view;
 
+import model.Boat;
+import model.BoatClub;
 import model.Member;
 
 import java.util.Scanner;
@@ -82,6 +84,37 @@ public class UI {
         System.out.println("(1) Compact List");
         System.out.println("(2) Verbose List");
         System.out.println("Type list type: ");
+    }
+
+    public void printCompactList(BoatClub boatClub) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Member member : boatClub.getMembersArray()) {
+            stringBuilder.append("Name: ");
+            stringBuilder.append(member.getName()).append(" ,");
+            stringBuilder.append("id: ");
+            stringBuilder.append(member.getMemberId()).append(" ,");
+            stringBuilder.append("boats: ");
+            stringBuilder.append(member.getNumberOfBoats()).append("\n");
+        }
+        System.out.println(stringBuilder);
+    }
+
+    public void printVerboseList(BoatClub boatClub) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Member member : boatClub.getMembersArray()) {
+            stringBuilder.append("Name: ");
+            stringBuilder.append(member.getName()).append(" ,");
+            stringBuilder.append("Personal number: ");
+            stringBuilder.append(member.getPersonalNumber()).append(" ,");
+            stringBuilder.append("id: ");
+            stringBuilder.append(member.getMemberId()).append("\n");
+            stringBuilder.append("boat list: \n");
+            for (Boat boat : member.getBoatArray()) {
+                stringBuilder.append("Type: " + " ").append(boat.getBoatType()).append(" , ").append("length: ").append(boat.getLength())
+                        .append(", pos:").append(member.getBoatArray().indexOf(boat)).append("\n");
+            }
+        }
+        System.out.println(stringBuilder);
     }
 
     //this is for registry in Act

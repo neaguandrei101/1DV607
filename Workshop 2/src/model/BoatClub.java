@@ -28,6 +28,10 @@ public class BoatClub {
         this.membersArray.add(member);
     }
 
+    public List<Member> getMembersArray() {
+        return membersArray;
+    }
+
     public void removeMember(int id) throws RuntimeException {
         boolean found = this.membersArray.removeIf(member -> member.getMemberId() == id);
         if (!found)
@@ -88,36 +92,6 @@ public class BoatClub {
                 .findAny();
         memberOptional.ifPresent(member -> member.setPersonalNumber(newPersonalNumber));
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
-    }
-
-    //TODO remove string formatting
-    public String compactListString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Member member : membersArray) {
-            stringBuilder.append("Name: ");
-            stringBuilder.append(member.getName()).append(" ,");
-            stringBuilder.append("id: ");
-            stringBuilder.append(member.getMemberId()).append(" ,");
-            stringBuilder.append("boats: ");
-            stringBuilder.append(member.getNumberOfBoats()).append("\n");
-        }
-        return stringBuilder.toString();
-    }
-
-    //TODO remove string formatting
-    public String verboseListString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Member member : membersArray) {
-            stringBuilder.append("Name: ");
-            stringBuilder.append(member.getName()).append(" ,");
-            stringBuilder.append("Personal number: ");
-            stringBuilder.append(member.getPersonalNumber()).append(" ,");
-            stringBuilder.append("id: ");
-            stringBuilder.append(member.getMemberId()).append("\n");
-            stringBuilder.append("boat list: \n");
-            stringBuilder.append(member.boatArrayToString());
-        }
-        return stringBuilder.toString();
     }
 
     public int generateId() {
