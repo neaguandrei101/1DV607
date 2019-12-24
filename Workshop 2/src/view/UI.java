@@ -4,6 +4,7 @@ import model.Boat;
 import model.BoatClub;
 import model.Member;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class UI {
@@ -88,7 +89,8 @@ public class UI {
 
     public void printCompactList(BoatClub boatClub) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Member member : boatClub.getMembersArray()) {
+        for (Iterator<Member> it = boatClub.getMembersIterator(); it.hasNext(); ) {
+            Member member = it.next();
             stringBuilder.append("Name: ");
             stringBuilder.append(member.getName()).append(" ,");
             stringBuilder.append("id: ");
@@ -101,7 +103,8 @@ public class UI {
 
     public void printVerboseList(BoatClub boatClub) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Member member : boatClub.getMembersArray()) {
+        for (Iterator<Member> it = boatClub.getMembersIterator(); it.hasNext(); ) {
+            Member member = it.next();
             stringBuilder.append("Name: ");
             stringBuilder.append(member.getName()).append(" ,");
             stringBuilder.append("Personal number: ");

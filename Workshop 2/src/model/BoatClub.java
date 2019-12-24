@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,8 +14,8 @@ public class BoatClub {
         this.membersArray.add(member);
     }
 
-    public List<Member> getMembersArray() {
-        return membersArray;
+    public Iterator<Member> getMembersIterator() {
+        return membersArray.iterator();
     }
 
     public void removeMember(int id) throws RuntimeException {
