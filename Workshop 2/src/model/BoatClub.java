@@ -5,18 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BoatClub {
     @JsonProperty("membersArray")
     private List<Member> membersArray = new ArrayList<>();
-
-    // this is bad but it is required by RegistryHandler
-    // can't remove
-    public BoatClub() {
-    }
 
     public void addMember(Member member) {
         this.membersArray.add(member);
@@ -111,29 +104,6 @@ public class BoatClub {
             }
         }
         return 0;
-    }
-
-    byte[] getJsonFileMembers() {
-        JSONArray jsonMemberArray = new JSONArray();
-        for (Member member : membersArray) {
-            JSONObject jsonMember = new JSONObject();
-            jsonMember.put("name", member.getName());
-            jsonMember.put("personalNumber", member.getPersonalNumber());
-            jsonMember.put("memberId", member.getMemberId());
-
-            JSONArray jsonMemberBoatArray = new JSONArray();
-            for (Boat boat : member.boatArray) {
-                JSONObject jsonBoat = new JSONObject();
-                jsonBoat.put("length", boat.getLength());
-                jsonBoat.put("boatType", boat.getBoatType());
-                jsonMemberBoatArray.add(jsonBoat);
-            }
-            jsonMember.put("boatArray", jsonMemberBoatArray);
-            jsonMemberArray.add(jsonMember);
-        }
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("membersArray", jsonMemberArray);
-        return jsonObject.toJSONString().getBytes();
     }
 
 }

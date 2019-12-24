@@ -110,7 +110,8 @@ public class UI {
             stringBuilder.append(member.getMemberId()).append("\n");
             stringBuilder.append("boat list: \n");
             for (Boat boat : member.getBoatArray()) {
-                stringBuilder.append("Type: " + " ").append(boat.getBoatType()).append(" , ").append("length: ").append(boat.getLength())
+                stringBuilder.append("Type: " + " ").append(boat.getBoatType()).append(" , ")
+                        .append("length: ").append(boat.getLength())
                         .append(", pos:").append(member.getBoatArray().indexOf(boat)).append("\n");
             }
         }
@@ -128,7 +129,8 @@ public class UI {
     }
 
     public void printMemberInfo(Member member) {
-        System.out.println("Name: " + member.getName() + "\nP. Number: " + member.getPersonalNumber() + "\nID: " + member.getMemberId() + "\nNumber of boats: " + member.getNumberOfBoats());
+        System.out.println("Name: " + member.getName() + "\nP. Number: " + member.getPersonalNumber() + "\nID: "
+                + member.getMemberId() + "\nNumber of boats: " + member.getNumberOfBoats());
     }
 
     //this is for deleteBoat()

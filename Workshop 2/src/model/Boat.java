@@ -35,7 +35,7 @@ public class Boat {
         setBoatType(this.newBoatType(changeBoatType));
     }
 
-    //TODO remove string formatting later, replace with enums
+    //TODO replace with ENUM
     private String newBoatType(int value) {
         String type = "";
         switch (value) {
