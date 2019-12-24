@@ -144,8 +144,7 @@ public class Act {
         int boatType = this.ui.scannerInt();
         this.ui.printBoatLengthMessage();
         int boatLength = this.ui.scannerInt();
-        Boat boat = new Boat(boatType, boatLength);
-        this.boatClub.addBoatToMember(id, boat);
+        this.boatClub.addBoatToMember(id, boatType, boatLength);
     }
 
     private void changeBoatInfo() {

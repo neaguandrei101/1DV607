@@ -4,6 +4,10 @@ public class Boat {
     private int length;
     private BoatType boatType;
 
+    public enum BoatType {
+        Sailboat, Motorsailer, Kayak_Canoe, Other
+    }
+
     public Boat() {
     } // this is bad but it is required by Jackson library
 
@@ -35,9 +39,9 @@ public class Boat {
         setBoatType(this.newBoatType(changeBoatType));
     }
 
-    //TODO replace with ENUM
+    //TODO find better implementation for this
     private BoatType newBoatType(int value) {
-        BoatType type ;
+        BoatType type;
         switch (value) {
             case 1:
                 type = BoatType.Sailboat;
@@ -49,10 +53,6 @@ public class Boat {
                 type = BoatType.Other;
         }
         return type;
-    }
-
-    public enum BoatType {
-        Sailboat, Motorsailer, Kayak_Canoe, Other
     }
 
 }
