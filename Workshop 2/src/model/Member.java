@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class Member {
     private String name;
@@ -77,7 +78,7 @@ public class Member {
     public Boat getBoatFromMember(int pos) {
         return this.boatArray.get(pos);
     }
-
+    @JsonIgnore
     public int getNumberOfBoats() {
         return boatArray.size();
     }
