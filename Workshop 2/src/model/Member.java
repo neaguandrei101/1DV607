@@ -75,9 +75,6 @@ public class Member {
         }
     }
 
-    public Boat getBoatFromMember(int pos) {
-        return this.boatArray.get(pos);
-    }
     @JsonIgnore
     public int getNumberOfBoats() {
         return boatArray.size();

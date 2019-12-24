@@ -71,7 +71,7 @@ public class BoatClub {
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
     }
 
-    public int generateId() {
+    private int generateId() {
         Random rand = new Random();
         if (this.membersArray.isEmpty()) {
             return rand.nextInt(999) + 1;
