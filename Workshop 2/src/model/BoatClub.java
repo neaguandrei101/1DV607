@@ -8,7 +8,7 @@ public class BoatClub {
     @JsonProperty("membersArray")
     private List<Member> membersArray = new ArrayList<>();
 
-    public void addMember(String name, String personalNumber, int boatType, int boatLength) {
+    public void addMember(String name, String personalNumber, Boat.BoatType boatType, int boatLength) {
         Boat boat = new Boat(boatType, boatLength);
         Member member = new Member(name, personalNumber, this.generateId(), boat);
         this.membersArray.add(member);
@@ -32,7 +32,7 @@ public class BoatClub {
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
     }
 
-    public void addBoatToMember(int id, int boatType,int boatLength) {
+    public void addBoatToMember(int id, Boat.BoatType boatType, int boatLength) {
         Optional<Member> memberOptional = this.membersArray.stream()
                 .filter(member -> member.getMemberId() == id)
                 .findFirst();
@@ -40,7 +40,7 @@ public class BoatClub {
         memberOptional.orElseThrow(() -> new RuntimeException("Member Not Found!"));
     }
 
-    public void changeBoatInfoFromMember(int id, int boatPos, int length, int boatType) {
+    public void changeBoatInfoFromMember(int id, int boatPos, int length, Boat.BoatType boatType) {
         Optional<Member> memberOptional = this.membersArray.stream()
                 .filter(member -> member.getMemberId() == id)
                 .findAny();

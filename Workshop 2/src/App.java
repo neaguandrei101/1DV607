@@ -1,12 +1,10 @@
-import controller.Act;
-import view.UI;
+import controller.Master;
 
 public class App {
 
-    public static void main(String[] args) throws Exception {
-        UI ui = new UI();
-    	Act act = new Act(ui);
-    	act.readChoice();
+    public static void main(String[] args) {
+        Master master = new Master();
+        master.startMenu();
     }
 
 }

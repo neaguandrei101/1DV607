@@ -11,8 +11,8 @@ public class Boat {
     public Boat() {
     } // this is bad but it is required by Jackson library
 
-    public Boat(int boatType, int length) {
-        this.boatType = this.newBoatType(boatType);
+    public Boat(BoatType boatType, int length) {
+        this.boatType = boatType;
         this.length = length;
     }
 
@@ -32,27 +32,11 @@ public class Boat {
         this.boatType = boatType;
     }
 
-    void setBoatInfo(int changeLength, int changeBoatType) {
+    void setBoatInfo(int length, BoatType boatType) {
         if (getBoatType() == null)
             throw new RuntimeException("There is no Boat!");
-        setLength(changeLength);
-        setBoatType(this.newBoatType(changeBoatType));
-    }
-
-    //TODO find better implementation for this
-    private BoatType newBoatType(int value) {
-        BoatType type;
-        switch (value) {
-            case 1:
-                type = BoatType.Sailboat;
-            case 2:
-                type = BoatType.Motorsailer;
-            case 3:
-                type = BoatType.Kayak_Canoe;
-            default:
-                type = BoatType.Other;
-        }
-        return type;
+        setLength(length);
+        setBoatType(boatType);
     }
 
 }

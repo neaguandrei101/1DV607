@@ -80,7 +80,7 @@ public class Member {
         return boatArray.size();
     }
 
-    void changeBoatInfo(int position, int length, int boatType) {
+    void changeBoatInfo(int position, int length, Boat.BoatType boatType) {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 
