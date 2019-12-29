@@ -1,0 +1,30 @@
+"Class diagram has improved and looks ok, though there is no dependency from UI to Act.
+
+Comment: There is still view responsibility in the model, i.e. you cannot return formated strings for printing the user interface, what if you want to change language or anything else? This is extensively discussed in the suggested solution.
+Removed the string formatting(hidden dependency) in Member.
+Removed the string formatting(hidden dependency) in BoatClub.
+No more hidden dependencies between the model and view.
+
+Comment: There is still business logic in the user interface. I.e. the BoatClub should be responsible for assigning a unique id to the members that are added, this is the business requirement. This is extensively discussed in the suggested solution.
+BoatClub now assigns the id in the model, you can see the private method generateId() in BoatClub.
+
+Comment: There is still hidden dependencies between view and controller. I.e. constants that must match e.g. Act.readChoice() switches on integers that must match the integers printed in the ui.console(). This is extensively discussed in the suggested solution.
+Changed the whole implementation in controller and view.
+The controller and view now use enums and interfaces, no more primitive hidden dependencies.
+This makes creating different views easy and insures type safety.
+I got inspired by the suggested solution for this.
+
+Comment: I guess the strings ""memberId"" etc in BoatClub.getJsonFileMembers() needs to match the actual attribute names in Member (etc)... this is a really painful dependency to have...
+Changed the whole implementation so as to remove the attribute names dependency.
+This was done by replacing SIMPLEJson with Jackson, a more advanced json serializer.
+This also reduced the number of external library dependencies.
+
+Fix: There is view responsibility in model classes: not fixed.
+  Done
+Fix: Business logic in the UI: not fixed.
+  Done
+Fix: There are hidden dependencies between view and controller: not fixed
+  Done
+
+Additional fix:
+Removed all operations in BoatClub that break encapsulation such as references to memebersArray, member, boat.
