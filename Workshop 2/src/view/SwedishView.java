@@ -96,7 +96,7 @@ public class SwedishView implements IView {
                 String personalNumber = this.scanner.next();
                 System.out.println("Skriv medlem id: ");
                 int id2 = this.scanner.nextInt();
-                boatClub.changeMemberName(id2, personalNumber);
+                boatClub.changeMemberPersonalNumber(id2, personalNumber);
                 break;
         }
         System.out.println("Medlemsinformation ändrades.");
