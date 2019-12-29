@@ -1,7 +1,6 @@
 package model;
 
 import java.util.*;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BoatClub {

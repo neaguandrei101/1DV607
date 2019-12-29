@@ -11,7 +11,7 @@ public class Member {
     private int memberId;
 
     @JsonProperty("boatArray")
-    List<Boat> boatArray = new ArrayList<>();
+    private List<Boat> boatArray = new ArrayList<>();
 
     // can't remove
     // this is bad but it is required by Jackson library
@@ -80,7 +80,7 @@ public class Member {
         return boatArray.size();
     }
 
-    void changeBoatInfo(int position, int length, Boat.BoatType boatType) {
+    public void changeBoatInfo(int position, int length, Boat.BoatType boatType) {
         boatArray.get(position).setBoatInfo(length, boatType);
     }
 

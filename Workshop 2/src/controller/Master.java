@@ -67,7 +67,7 @@ public class Master {
                 readFromRegistry();
                 menu();
                 break;
-            default:
+            case EXIT:
                 try {
                     RegistryHandler.saveBoatClubToJsonFile("LocalBoatClubRegistry.json", this.boatClub);
                 } catch (IOException e) {
