@@ -1,6 +1,6 @@
 package view;
 
-public enum Menu{
+public enum MenuOptions {
     ADD_MEMBER,
     CHANGE_MEMBER,
     REMOVE_MEMBER,

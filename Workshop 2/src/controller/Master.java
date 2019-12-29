@@ -7,65 +7,65 @@ import view.*;
 import java.io.IOException;
 
 public class Master {
-    IView view = new EnglishView();
-    BoatClub boatClub = new BoatClub();
+    private IView view = new EnglishView();
+    private BoatClub boatClub = new BoatClub();
 
     public void startMenu() {
-        MenuLanguage choice = view.startMessage();
+        LanguageOptions choice = view.startMessage();
         switch (choice) {
             case ENGLISH:
                 view = new EnglishView();
-                viewMenu();
+                menu();
                 break;
             case SWEDISH:
                 view = new SwedishView();
-                viewMenu();
+                menu();
                 break;
         }
     }
 
-    private void viewMenu() {
-        Menu choice = view.printMenu();
+    private void menu() {
+        MenuOptions choice = view.printMenu();
         switch (choice) {
             case ADD_MEMBER:
                 this.view.addMember(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case CHANGE_MEMBER:
                 this.view.changeMember(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case REMOVE_MEMBER:
                 this.view.removeMember(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case LOOK_MEMBER:
                 this.view.lookMember(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case LIST_COMPACT:
                 this.view.listCompact(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case LIST_VERBOSE:
                 this.view.listVerbose(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case ADD_BOAT:
                 this.view.addBoat(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case CHANGE_BOAT:
                 this.view.changeBoat(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case REMOVE_BOAT:
                 this.view.removeBoat(this.boatClub);
-                viewMenu();
+                menu();
                 break;
             case READ_REGISTRY:
                 readFromRegistry();
-                viewMenu();
+                menu();
                 break;
             default:
                 try {

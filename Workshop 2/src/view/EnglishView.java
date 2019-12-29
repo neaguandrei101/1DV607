@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class EnglishView implements IView {
     private final String[] boats = new String[]{"Sailboat", "Motorsailer", "Kayak/Canoe", "Other"};
     private final String lengthUnit = "feet";
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    public Menu printMenu() {
+    public MenuOptions printMenu() {
         System.out.println("Choose: ");
         System.out.println("(1) Add a new Member");
         System.out.println("(2) Change a Member");
@@ -26,45 +26,45 @@ public class EnglishView implements IView {
         System.out.println("(10) Read from Registry.json");
         System.out.print("\n--> Your Choice: ");
         int choice = this.scanner.nextInt();
-        Menu menu;
+        MenuOptions menuOptions;
         switch (choice) {
             case 1:
-                menu = Menu.ADD_MEMBER;
+                menuOptions = MenuOptions.ADD_MEMBER;
                 break;
             case 2:
-                menu = Menu.CHANGE_MEMBER;
+                menuOptions = MenuOptions.CHANGE_MEMBER;
                 break;
             case 3:
-                menu = Menu.REMOVE_MEMBER;
+                menuOptions = MenuOptions.REMOVE_MEMBER;
                 break;
             case 4:
-                menu = Menu.LOOK_MEMBER;
+                menuOptions = MenuOptions.LOOK_MEMBER;
                 break;
             case 5:
-                menu = Menu.LIST_COMPACT;
+                menuOptions = MenuOptions.LIST_COMPACT;
                 break;
             case 6:
-                menu = Menu.LIST_VERBOSE;
+                menuOptions = MenuOptions.LIST_VERBOSE;
                 break;
             case 7:
-                menu = Menu.ADD_BOAT;
+                menuOptions = MenuOptions.ADD_BOAT;
                 break;
             case 8:
-                menu = Menu.CHANGE_BOAT;
+                menuOptions = MenuOptions.CHANGE_BOAT;
                 break;
             case 9:
-                menu = Menu.REMOVE_BOAT;
+                menuOptions = MenuOptions.REMOVE_BOAT;
                 break;
             case 10:
-                menu = Menu.READ_REGISTRY;
+                menuOptions = MenuOptions.READ_REGISTRY;
                 break;
             default:
-                menu = Menu.EXIT;
+                menuOptions = MenuOptions.EXIT;
                 break;
         }
-        return menu;
+        return menuOptions;
     }
-    @Override
+
     public void addMember(BoatClub boatClub) {
         System.out.println("Name: ");
         String name = this.scanner.next();
@@ -78,7 +78,6 @@ public class EnglishView implements IView {
         System.out.println("A new member has been added!");
     }
 
-    @Override
     public void changeMember(BoatClub boatClub) {
         System.out.println("(1) Change name : ");
         System.out.println("(2) Change personal number : ");
@@ -104,7 +103,6 @@ public class EnglishView implements IView {
         System.out.println("Member information changed.");
     }
 
-    @Override
     public void removeMember(BoatClub boatClub) {
         System.out.println("Type member id: ");
         int id = this.scanner.nextInt();
@@ -112,7 +110,6 @@ public class EnglishView implements IView {
         System.out.println("Member removed.");
     }
 
-    @Override
     public void lookMember(BoatClub boatClub) {
         System.out.println("Type the id of the member you want to look at: ");
         int id = this.scanner.nextInt();
@@ -121,7 +118,6 @@ public class EnglishView implements IView {
                 + member.getMemberId() + "\nNumber of boats: " + member.getNumberOfBoats());
     }
 
-    @Override
     public void listCompact(BoatClub boatClub) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Iterator<Member> it = boatClub.getMembersIterator(); it.hasNext(); ) {
@@ -136,7 +132,6 @@ public class EnglishView implements IView {
         System.out.println(stringBuilder);
     }
 
-    @Override
     public void listVerbose(BoatClub boatClub) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Iterator<Member> it = boatClub.getMembersIterator(); it.hasNext(); ) {
@@ -157,7 +152,6 @@ public class EnglishView implements IView {
         System.out.println(stringBuilder);
     }
 
-    @Override
     public void addBoat(BoatClub boatClub) {
         System.out.println("Type the id of the member you want to add the boat to: ");
         int id = this.scanner.nextInt();
@@ -169,7 +163,6 @@ public class EnglishView implements IView {
         System.out.println("A new boat has been added!");
     }
 
-    @Override
     public void changeBoat(BoatClub boatClub) {
         System.out.println("Type the id of the member you want to change the boat information: ");
         int id = this.scanner.nextInt();
@@ -182,7 +175,6 @@ public class EnglishView implements IView {
         boatClub.changeBoatInfoFromMember(id, pos, boatLength, boatType);
     }
 
-    @Override
     public void removeBoat(BoatClub boatClub) {
         System.out.println("Type the id of the member you want to delete the boat from: ");
         int id = this.scanner.nextInt();

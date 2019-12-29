@@ -6,21 +6,21 @@ import java.util.Scanner;
 
 public interface IView {
 
-    default MenuLanguage startMessage() {
+    default LanguageOptions startMessage() {
         System.out.println("Choose: ");
         System.out.println("(1) English view");
         System.out.println("(2) Swedish view");
         int choice = new Scanner(System.in).nextInt();
-        MenuLanguage menuLanguage = null;
+        LanguageOptions languageOptions = null;
         if (choice == 2) {
-            menuLanguage = MenuLanguage.SWEDISH;
+            languageOptions = LanguageOptions.SWEDISH;
         } else {
-            menuLanguage = MenuLanguage.ENGLISH;
+            languageOptions = LanguageOptions.ENGLISH;
         }
-        return menuLanguage;
+        return languageOptions;
     }
 
-    Menu printMenu();
+    MenuOptions printMenu();
 
     void addMember(BoatClub boatClub);
 

@@ -1,6 +1,6 @@
 package view;
 
-public enum MenuLanguage{
+public enum LanguageOptions {
    ENGLISH,
    SWEDISH
 }
