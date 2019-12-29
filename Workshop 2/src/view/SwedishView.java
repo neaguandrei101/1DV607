@@ -23,6 +23,7 @@ public class SwedishView implements IView {
         System.out.println("(h) Ändra båtens information");
         System.out.println("(i) Radera en båt från en medlem");
         System.out.println("(j) Läs från registret.json");
+        System.out.println("(k) Spara till Registry.json");
         System.out.print("\n--> Ditt val: ");
         char choice = this.scanner.next().charAt(0);
         MenuOptions menuOptions;
@@ -181,6 +182,10 @@ public class SwedishView implements IView {
         System.out.println("Skriv båtens position: ");
         int pos = this.scanner.nextInt();
         boatClub.removeBoatFromMember(id, pos);
+    }
+
+    public void exitMessage() {
+        System.out.println("Exiting and saving Registry");
     }
 
     //helper method for view, use to print the boat types available

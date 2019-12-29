@@ -24,6 +24,7 @@ public class EnglishView implements IView {
         System.out.println("(8) Change a Boat’s information");
         System.out.println("(9) Delete a Boat from a Member");
         System.out.println("(10) Read from Registry.json");
+        System.out.println("(11) Save to Registry.json");
         System.out.print("\n--> Your Choice: ");
         int choice = this.scanner.nextInt();
         MenuOptions menuOptions;
@@ -181,6 +182,10 @@ public class EnglishView implements IView {
         System.out.println("Type the boat position: ");
         int pos = this.scanner.nextInt();
         boatClub.removeBoatFromMember(id, pos);
+    }
+
+    public void exitMessage() {
+        System.out.println("Exiting and saving Registry");
     }
 
     //helper method for view, use to print the boat types available

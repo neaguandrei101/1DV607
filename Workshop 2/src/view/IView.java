@@ -11,7 +11,7 @@ public interface IView {
         System.out.println("(1) English view");
         System.out.println("(2) Swedish view");
         int choice = new Scanner(System.in).nextInt();
-        LanguageOptions languageOptions = null;
+        LanguageOptions languageOptions;
         if (choice == 2) {
             languageOptions = LanguageOptions.SWEDISH;
         } else {
@@ -39,5 +39,7 @@ public interface IView {
     void changeBoat(BoatClub boatClub);
 
     void removeBoat(BoatClub boatClub);
+
+    void exitMessage();
 
 }
