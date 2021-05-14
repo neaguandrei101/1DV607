@@ -1,0 +1,3 @@
+Project strongly adherent to MVC pattern, with encapsulation and OOP design. 
+It is a management software for boat docking. Documentation contains UML diagrams and sequence diagrams.
+Data is saved in JSON using Jackson.
